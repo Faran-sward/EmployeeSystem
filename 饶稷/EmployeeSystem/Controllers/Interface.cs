@@ -1,4 +1,0 @@
-﻿namespace EmployeeSystem.Controllers.Interface
-{
-
-}
