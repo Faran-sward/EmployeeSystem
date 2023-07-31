@@ -1,57 +1,77 @@
-﻿using EmployeeSystem.Models.Tables;
-using EmployeeSystem.Models.Connection;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Oracle.ManagedDataAccess.Client;
+﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
+using System.Text;
 
-namespace EmployeeSystem.Models.DataManager  // 负责对数据库的简单操作，如增删改查
+namespace EmployeeSystem.Models.DataManager
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class BasicInfoController : ControllerBase  // 负责对员工的基本信息操作
+    // 查询生成器
+    public class SqlGenerator
     {
-        [HttpGet("{emp_id}")]
-        public string GetBasicInfoAll(string emp_id, OracleConnection connection)  // 由emp_id获取其他属性值
+        // 对单个表的查询生成Sql语句
+        // table_name为待查表的名字
+        // primary_key_names为待查表的主码属性
+        // primary_key_values为用于where子句中的主码对应的值
+        // result_names为表中待查属性
+        // 不检查primary_key_names、result_names的合法性，只是单纯生成字符串
+        string Search(string table_name, string[] search_key_names, string[] search_key_values, string[] result_names)
         {
-            BasicInfo basicinfo = new BasicInfo();  // 用于接收数据的实例
-            try
+            StringBuilder sqlBuilder = new StringBuilder();
+
+            sqlBuilder.Append("SELECT ");
+            for (int i = 0; i < result_names.Length; i++)
             {
-                connection.Open();
-                string sql = $"SELECT * " +
-                             $"FROM FundamentalInfo F, EmployeeInfo E " +
-                             $"WHERE f.employeeid = e.employeeid and f.EMPLOYEEID= :emp_id";
-                using (OracleCommand cmd = new OracleCommand(sql, connection))
+                sqlBuilder.Append(result_names[i]);
+                if (i < result_names.Length - 1)
                 {
-                    cmd.Parameters.Add(":emp_id", OracleDbType.Varchar2).Value = emp_id;
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        reader.Read();
-                        // 根据需要获取列的值
-                        basicinfo.ID = reader["ID_number"].ToString();  // 在数据表中，可以建立string数组存储对应属性值
-                        basicinfo.Name = reader["Name"].ToString();  // 可以声明一个enum对应basicinfo对应的属性名
-                        basicinfo.BasicSalary = reader["BasicSalary"].ToString();  // 方便日后修改，且能够循环遍历
-                        basicinfo.Sex = reader["Sex"].ToString();  // 尽量消除弱警告：使用 string? 表明该字符串可以为空指针
-                        basicinfo.PhoneNumber = reader["PhoneNumber"].ToString();  // string调用方法前可以使用空合并运算符 ??消除为空情形
-                        basicinfo.HomeAddress = reader["HomeAddress"].ToString();  // 防止不必要的错误
-                        basicinfo.ImageURL = reader["ImageURL"].ToString();
-                        basicinfo.WorkState = reader["WorkState"].ToString();
-                        string? sTime = reader["StartWorkingDate"].ToString();
-                        string? birth = reader["Birth"].ToString();
-                        string? startTime = string.IsNullOrEmpty(sTime)? "" : sTime.Substring(0, sTime.Length - 8);  // TODO
-                        string? birthTime = string.IsNullOrEmpty(birth) ? "" : birth.Substring(0, birth.Length - 8);
-                        basicinfo.Birth = birthTime;
-                        basicinfo.StartWorkingDate = startTime;
-                    }
+                    sqlBuilder.Append(", ");
                 }
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("连接或操作数据库时发生错误：" + ex.Message);
             }
 
-            return JsonConvert.SerializeObject(basicinfo);
+            sqlBuilder.Append(" FROM ");
+            sqlBuilder.Append(table_name);
+            sqlBuilder.Append(" WHERE ");
+
+            for (int i = 0; i < search_key_names.Length; i++)
+            {
+                sqlBuilder.Append(search_key_names[i]);
+                sqlBuilder.Append(" = : ");
+                sqlBuilder.Append(search_key_values[i]);
+
+                if (i < search_key_names.Length - 1)
+                {
+                    sqlBuilder.Append(" AND ");
+                }
+            }
+
+            return sqlBuilder.ToString();
         }
+
+        // 对单个表的插入生成Sql语句
+        // table_name为待插入表的名字
+        // attributes为待插入表的对应属性
+        // values为待插入表的对应的值
+        // 不检查attributes、table_name的合法性，只是单纯生成字符串
+        // 由于只输入了一组值，所以Sql的插入结果只包含一个元组
+        /*
+        string Insert(string table_name, string[] attributes, string[] values)
+        {
+
+        }
+
+        // 对单个表的更新生成Sql语句
+        // table_name为待更新表的名字
+        // attributes为待更新表的对应属性
+        // values为待更新表的对应的值
+        // primary_key_names为待更新表的主码属性
+        // primary_key_values为用于where子句中的主码对应的值
+        string Update(string table_name, string[] attributes, string[] values, string[] search_key_names, string[] search_key_values)
+        {
+
+        }
+
+        string Delete(string table_name, string[] search_key_names, string[] search_key_values)
+        {
+            
+        }
+        */
     }
 }

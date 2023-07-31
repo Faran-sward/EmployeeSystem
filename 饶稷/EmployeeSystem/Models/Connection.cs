@@ -69,7 +69,7 @@ namespace EmployeeSystem.Models.Connection  // 负责数据库连接
 
     public class DatabaseLink : IDisposable  // 负责数据库的连接类
     {
-        public OracleConnection connection;  // Oracle的连接类的实例
+        public OracleConnection? connection;  // Oracle的连接类的实例
         private string connection_string = "";  // 连接Oracle数据库的字符串
 
         // 手动指定连接数据库的属性，并设置连接字符串，并返回设置是否成功
@@ -107,25 +107,29 @@ namespace EmployeeSystem.Models.Connection  // 负责数据库连接
         // 手动指定并执行连接数据库
         public DatabaseLink(string hostname, string port, string service_name, string user_id, string password)
         {
-            if (!SetConnectionString(hostname, port, service_name, user_id, password)) 
-                Console.WriteLine("connection failed ! ");
-            connection = new OracleConnection(connection_string);
-            Connect();
+            try
+            {
+                if (!SetConnectionString(hostname, port, service_name, user_id, password))
+                    Console.WriteLine("connection failed ! ");
+                connection = new OracleConnection(connection_string);
+                Connect();
+            }
+            catch(Exception ex) { Console.WriteLine("An error occurred during database connection: " + ex.Message); }
         }
 
         public void Connect()  // 未连接数据库时可以调用Connect函数连接数据库
         {
-            if (connection.State != System.Data.ConnectionState.Open)
+            if (connection?.State != System.Data.ConnectionState.Open)
             {
-                connection.Open();
+                connection?.Open();
                 Console.WriteLine("connect successfully !");
             }
         }
         public void DisConnect()  // 连接数据库时可以调用DisConnect函数断开数据库连接
         {
-            if (connection.State != System.Data.ConnectionState.Closed)
+            if (connection?.State != System.Data.ConnectionState.Closed)
             {
-                connection.Close();
+                connection?.Close();
                 Console.WriteLine("connection closed ! ");
             }
         }
