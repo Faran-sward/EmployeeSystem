@@ -53,7 +53,7 @@ Login::Login(QWidget *parent) :
     //设置输入框范围
     QRegExp regExp1("[A-Za-z0-9]{1,20}");
     ui->passEdit->setValidator(new QRegExpValidator(regExp1, this));
-    QRegExp regExp2("[0-9]{1,20}");
+    QRegExp regExp2("[0-9]{1,8}");
     ui->numEdit->setValidator(new QRegExpValidator(regExp2, this));
     ui->passEdit->setEchoMode(QLineEdit::Password); //隐藏密码
 }
@@ -125,11 +125,15 @@ void Login::on_loginButton_clicked()
         ui->errorText->setText("错误：工号不得为空！");
         return;
     }
+    if(ui->numEdit->text().length()!=8){
+        ui->errorText->setText("错误：工号应为8位！");
+        return;
+    }
     if(ui->passEdit->text().length()==0){
         ui->errorText->setText("错误：密码不得为空！");
         return;
     }
-    ui->errorText->setStyleSheet("border: none;color:rgb(0, 255, 0);");
+    ui->errorText->setStyleSheet("border: none;color:(86, 144, 130);");
     ui->errorText->setText("正在登录中，请稍等");
     QNetworkRequest request;
     QNetworkAccessManager* naManager = new QNetworkAccessManager(this);

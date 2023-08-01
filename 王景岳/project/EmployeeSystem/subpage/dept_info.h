@@ -13,6 +13,9 @@
 #include <QJsonParseError>
 #include <QJsonObject>
 #include <QDebug>
+#include <QTimer>
+#include <QPushButton>
+#include <QMessageBox>
 
 namespace Ui {
 class Dept_Info;
@@ -32,6 +35,10 @@ private:
     QNetworkRequest request;
     QUrl url = QUrl("");
     void GetDept(QNetworkReply *reply);
+
+private slots:
+    void slotCountMessage();       //定时触发的槽函数
+    void onCancelClicked();        //取消按钮被点击触发的槽函数
 };
 
 #endif // DEPT_INFO_H

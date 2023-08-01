@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 #endif
     QApplication a(argc, argv);
     //加载样式表
-    QFile file(":/qss/flatwhite.css");
+    QFile file(":/qss/design.css");
     if (file.open(QFile::ReadOnly)) {
         QString qss = QLatin1String(file.readAll());
         QString paletteColor = qss.mid(20, 7);
@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
         qApp->setStyleSheet(qss);
         file.close();
     }
-    Login w;
-    w.show();
-    /*Sign w;
+    /*Login w;
     w.show();*/
+    MainWindow w;
+    w.show();
     return a.exec();
 }

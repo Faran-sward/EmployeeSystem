@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT       += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -41,11 +41,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     other/qss.qrc
-
-QT += network
-
-DISTFILES += \
-    images/icons8-closed-eye-100.png \
-    images/icons8-eye-100.png \
-    images/icons8-lock-60.png \
-    images/icons8-user-60.png

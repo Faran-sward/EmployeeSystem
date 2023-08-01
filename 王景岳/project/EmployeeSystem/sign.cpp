@@ -30,6 +30,11 @@ void Sign::on_addButton_clicked()
         ui->errorText->setText("错误：工号不得为空！");
         return;
     }
+    if(ui->numEdit->text().length()!=8){
+        ui->errorText->setStyleSheet("border: none;color:rgb(255, 0, 0);");
+        ui->errorText->setText("错误：工号应为8位！");
+        return;
+    }
     if(ui->passEdit->text().length()==0){
         ui->errorText->setStyleSheet("border: none;color:rgb(255, 0, 0);");
         ui->errorText->setText("错误：密码不得为空！");
@@ -45,7 +50,7 @@ void Sign::on_addButton_clicked()
         ui->errorText->setText("错误：确认密码必须与密码相同！");
         return;
     }
-    ui->errorText->setStyleSheet("border: none;color:rgb(0, 255, 0);");
+    ui->errorText->setStyleSheet("border: none;color:rgb(86, 144, 130);");
     ui->errorText->setText("正在创建中，请稍等");
     QNetworkRequest request;
     QNetworkAccessManager* naManager = new QNetworkAccessManager(this);
@@ -87,7 +92,7 @@ void Sign::requestFinished(QNetworkReply *reply)
         loginResultJson =  QString::fromStdString(bytes.toStdString());
         if(bytes.toStdString()=="OK"){
             qDebug() << "账号" << ui->numEdit->text()<<"已创建成功";
-            ui->errorText->setStyleSheet("border: none;color:rgb(0, 255, 0);");
+            ui->errorText->setStyleSheet("border: none;color:rgb(86, 144, 130);");
             ui->errorText->setText("账号" + ui->numEdit->text()+"已创建成功");
         }
         else{
