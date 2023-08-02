@@ -8,8 +8,8 @@ namespace EmployeeSystem.Models.DataManager
     // 更新数据库 或者 从数据库获得所需要的信息并存放在model中
     public class WorkScheduleManager
     {
-        // private DatabaseLink link = new DatabaseLink("localhost", "1521", "orcl", "TESTER", "123456");  // TODO
-        private DatabaseLink link = new DatabaseLink("192.168.88.153", "1521", "employee_system", "SYSTEM", "ORACLEsystem0");
+        private DatabaseLink link = new DatabaseLink("localhost", "1521", "orcl", "TESTER", "123456");  // TODO
+        //private DatabaseLink link = new DatabaseLink("192.168.88.153", "1521", "employee_system", "SYSTEM", "ORACLEsystem0");
 
         // 根据JSON信息，从数据库获取对应值，默认返回整个元组
         public bool Get(string json, out List<WorkSchedule> ret)
