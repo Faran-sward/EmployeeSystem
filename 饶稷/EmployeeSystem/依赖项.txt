@@ -1,0 +1,4 @@
+Microsoft.AspNetCore.OpenApi
+Newtonsoft.Json
+Oracle.ManagedDataAccess.Core
+Swashbuckle.AspNetCore
