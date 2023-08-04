@@ -16,6 +16,7 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QResizeEvent>
 
 namespace Ui {
 class Dept_Info;
@@ -36,9 +37,13 @@ private:
     QUrl url = QUrl("");
     void GetDept(QNetworkReply *reply);
 
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+
 private slots:
     void slotCountMessage();       //定时触发的槽函数
     void onCancelClicked();        //取消按钮被点击触发的槽函数
+    void on_addButton_clicked();
 };
 
 #endif // DEPT_INFO_H

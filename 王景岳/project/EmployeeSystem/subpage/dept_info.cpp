@@ -1,20 +1,24 @@
 #include "dept_info.h"
 #include "ui_dept_info.h"
+#include "add_dept.h"
 
 Dept_Info::Dept_Info(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Dept_Info)
 {
     ui->setupUi(this);
-    int width = qApp->desktop()->availableGeometry().width() - 200;
+    int width = ui->tableWidget->width()-20;
     ui->tableWidget->setColumnCount(5);
-    ui->tableWidget->setColumnWidth(0, width * 0.06);
-    ui->tableWidget->setColumnWidth(1, width * 0.10);
-    ui->tableWidget->setColumnWidth(2, width * 0.10);
-    ui->tableWidget->setColumnWidth(3, width * 0.10);
-    ui->tableWidget->setColumnWidth(4, width * 0.10);
+    ui->tableWidget->setColumnWidth(0, width * 0.20);
+    ui->tableWidget->setColumnWidth(1, width * 0.20);
+    ui->tableWidget->setColumnWidth(2, width * 0.20);
+    ui->tableWidget->setColumnWidth(3, width * 0.20);
+    ui->tableWidget->setColumnWidth(4, width * 0.20);
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(25);
-
+    ui->addButton->setStyleSheet("background-color:rgb(65,105,225);color:rgb(255, 255, 255);font:10pt;");
+    ui->addButton->setIcon(QIcon(":/images/icons8-plus-50.png"));
+    ui->addButton->setIconSize(QSize(15,15));
+    //ui->addButton->setButtonStyle(Qt::ToolButtonTextBesideIcon);
     QStringList headText;
     headText << "部门编号" << "部门名称" << "所在楼" << "所在楼层";
     ui->tableWidget->setHorizontalHeaderLabels(headText);
@@ -31,7 +35,6 @@ Dept_Info::Dept_Info(QWidget *parent) :
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotCountMessage()));
     timer->start(10000);
-
 }
 
 void Dept_Info::GetDept(QNetworkReply *reply)
@@ -57,7 +60,7 @@ void Dept_Info::GetDept(QNetworkReply *reply)
             }
             for (int i = 0; i < nSize; i++)
             {
-                qDebug() << "将一条记录插入表格";
+                //qDebug() << "将一条记录插入表格";
                 ui->tableWidget->insertRow(ui->tableWidget->rowCount());
                 int rowIdx = ui->tableWidget->rowCount()-1;
                 //必须先设置item,然后再获取,因为默认是空的
@@ -80,6 +83,7 @@ void Dept_Info::GetDept(QNetworkReply *reply)
 
 void Dept_Info::slotCountMessage()
 {
+    qDebug()<<"进行一次刷新";
     manager.get(request);
 }
 
@@ -105,4 +109,21 @@ void Dept_Info::onCancelClicked()
      * 通过服务端对数据库进行修改
      */
     ui->tableWidget->removeRow(row);
+}
+
+void Dept_Info::resizeEvent(QResizeEvent *event)
+{
+    int width = ui->tableWidget->width()-20;
+    ui->tableWidget->setColumnWidth(0, width * 0.20);
+    ui->tableWidget->setColumnWidth(1, width * 0.20);
+    ui->tableWidget->setColumnWidth(2, width * 0.20);
+    ui->tableWidget->setColumnWidth(3, width * 0.20);
+    ui->tableWidget->setColumnWidth(4, width * 0.20);
+}
+
+void Dept_Info::on_addButton_clicked()
+{
+    Add_dept* a=new Add_dept();
+    a->show();
+    connect(a, SIGNAL(closeSignal()), this, SLOT(slotCountMessage()));
 }

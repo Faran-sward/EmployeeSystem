@@ -13,19 +13,25 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     sign.cpp \
-    subpage/dept_info.cpp
+    subpage/add_dept.cpp \
+    subpage/dept_info.cpp \
+    subpage/dept_pos.cpp
 
 HEADERS += \
     login.h \
     mainwindow.h \
     sign.h \
-    subpage/dept_info.h
+    subpage/add_dept.h \
+    subpage/dept_info.h \
+    subpage/dept_pos.h
 
 FORMS += \
     login.ui \
     mainwindow.ui \
     sign.ui \
-    subpage/dept_info.ui
+    subpage/add_dept.ui \
+    subpage/dept_info.ui \
+    subpage/dept_pos.ui
 
 DESTDIR = $$PWD/quc
 CONFIG(debug, debug|release){

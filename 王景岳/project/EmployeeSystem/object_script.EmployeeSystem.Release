@@ -1,0 +1,14 @@
+release/login.o
+release/main.o
+release/mainwindow.o
+release/sign.o
+release/add_dept.o
+release/dept_info.o
+release/dept_pos.o
+release/qrc_qss.o
+release/moc_login.o
+release/moc_mainwindow.o
+release/moc_sign.o
+release/moc_add_dept.o
+release/moc_dept_info.o
+release/moc_dept_pos.o

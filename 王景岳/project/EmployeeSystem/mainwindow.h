@@ -7,6 +7,7 @@
 #include <QThread>
 #include <QTimer>
 #include "subpage/dept_info.h"
+#include "subpage/dept_pos.h"
 
 /*changed*/
 #include<QMouseEvent>
@@ -50,6 +51,7 @@ private:
     QStandardItemModel* model;
 
     Dept_Info* dept_info;
+    Dept_Pos* dept_pos;
 
 private slots:
     void GetLeftPress(int index, int parentIndex); //上方标签被点击后触发的槽函数

@@ -1,0 +1,14 @@
+debug/login.o
+debug/main.o
+debug/mainwindow.o
+debug/sign.o
+debug/add_dept.o
+debug/dept_info.o
+debug/dept_pos.o
+debug/qrc_qss.o
+debug/moc_login.o
+debug/moc_mainwindow.o
+debug/moc_sign.o
+debug/moc_add_dept.o
+debug/moc_dept_info.o
+debug/moc_dept_pos.o

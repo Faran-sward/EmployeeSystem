@@ -42,7 +42,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widgetTop->setProperty("nav", "top");
 
     //将所有子页面生成并加入stackedWidget
-    dept_info=new Dept_Info;
+    dept_pos=new Dept_Pos();
+    ui->stackedWidget->addWidget(dept_pos);
+    dept_info=new Dept_Info();
     ui->stackedWidget->addWidget(dept_info);
 
     connect(ui->navListView,SIGNAL(pressed(int,int)),this,SLOT(GetLeftPress(int,int)));
@@ -52,8 +54,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(UpdateLeft()));
     timer->start(10);
     ui->stackedWidget->setCurrentIndex(5);
-
-
 
     requestData("E0001");
     ui->page5_stack->setCurrentIndex(0);
