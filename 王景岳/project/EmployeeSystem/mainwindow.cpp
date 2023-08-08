@@ -1,13 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+/*
+ * 该窗口是boss登录后进入的主界面
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     //设置左侧标签导航栏内容与样式
-    QString str="组织规划||0||,部门信息|组织规划|||,部门管理|组织规划|||,员工信息||0||,我的信息|员工信息|||,全体信息|员工信息|||,职务管理||0||,我的职务|职务管理|||,简历管理|职务管理|||,入职登记|职务管理|||,合同管理||0||,合同信息查看|合同管理|||,合同信息管理|合同管理|||,考勤管理||0||,考勤排班|考勤管理|||,我的日历|考勤管理|||,考勤数据修改|考勤管理|||,薪资管理||0||,我的薪水|薪资管理|||,薪水变更|薪资管理|||";
+    QString str="组织规划||0||,部门信息|组织规划|||,部门管理|组织规划|||,编制申请审批|组织规划|||,薪资管理||0||,薪资变更|薪资管理|||,员工信息||0||,我的信息|员工信息|||,员工简历|员工信息|||,职务管理||0||,我的职务|职务管理|||,我的申请|职务管理|||,受理申请|职务管理|||,合同管理||0||,员工合同|合同管理|||,受理申请|合同管理|||,考勤管理||0||,考勤信息|考勤管理|||,排班管理|考勤管理|||,受理申请|考勤管理|||";
 
     ui->navListView->setItems(str);
     ui->navListView->setChildBgNormalColor(QColor(255,255,255));
@@ -36,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     //将上方标签按钮加入按钮组
     topgroup->addButton(ui->toolButton,0);
     topgroup->addButton(ui->toolButton_2,1);
-    topgroup->addButton(ui->toolButton_3,2);
+    //topgroup->addButton(ui->toolButton_3,2);
     ui->widgetTitle->setProperty("form", "title");
     ui->widgetLeft->setProperty("nav", "left");
     ui->widgetTop->setProperty("nav", "top");
@@ -46,6 +49,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->addWidget(dept_pos);
     dept_info=new Dept_Info();
     ui->stackedWidget->addWidget(dept_info);
+    pre_appr=new Pre_Appr();
+    ui->stackedWidget->addWidget(pre_appr);
+    sala_mana=new Sala_Mana();
+    ui->stackedWidget->addWidget(sala_mana);
+    /*
+     * 加入新页面
+     */
 
     connect(ui->navListView,SIGNAL(pressed(int,int)),this,SLOT(GetLeftPress(int,int)));
     connect(topgroup,SIGNAL(buttonClicked(int)),this,SLOT(GetTopPress(int)));
@@ -53,10 +63,7 @@ MainWindow::MainWindow(QWidget *parent)
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(UpdateLeft()));
     timer->start(10);
-    ui->stackedWidget->setCurrentIndex(5);
-
-    requestData("E0001");
-    ui->page5_stack->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
@@ -107,8 +114,10 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event){
             {
                 if (isMousePressed && (ev->buttons() && Qt::LeftButton))
                 {
-                    this->move(ev->globalPos() - mousePos);
-                    return true;
+                    if (!this->isMaximized()){ //窗口已经最大化则禁止拖动
+                        this->move(ev->globalPos() - mousePos);
+                        return true;
+                    }
                 }
             }
             return QWidget::eventFilter(watched, event);;
@@ -128,18 +137,10 @@ void MainWindow::GetLeftPress(int index, int parentIndex)
     topgroup->button(0)->setChecked(false);
     topgroup->setExclusive(true);
     int page=0;
-    if(parentIndex<=2){
-        page=parentIndex*2+index;
+    for(int i=0;i<parentIndex;i++){
+        page+=parentlong[i];
     }
-    else if(parentIndex<=4){
-        page=parentIndex*2+index+1;
-    }
-    else{
-        page=parentIndex*2+index+2;
-    }
-    /*
-     * 此处进行页面切换
-     */
+    page+=index;
     ui->stackedWidget->setCurrentIndex(page);
 }
 
@@ -149,10 +150,13 @@ void MainWindow::GetTopPress(int index)
     indexnow=0;
     parentIndexnow=-1;
     int page=14+index;
-    /*
-     * 此处进行页面切换
-     */
     ui->stackedWidget->setCurrentIndex(page);
+}
+
+void MainWindow::on_toolButton_3_clicked()
+{
+
+    close();
 }
 
 void MainWindow::UpdateLeft()
@@ -193,62 +197,3 @@ void MainWindow::on_btnMenu_Max_clicked()
     }
 }
 
-void MainWindow::requestData(const QString& empID)
-{
-    QUrl url("http://8.130.115.212:1000/api/DeployInfoQuery/GetDeployInfo/" + empID);
-
-    QNetworkRequest request;
-    request.setUrl(url);
-
-    QNetworkReply* reply = networkManager->get(request);
-    connect(reply, &QNetworkReply::finished, this, &MainWindow::handleNetworkReply);
-}
-
-void MainWindow::handleNetworkReply()
-{
-    QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
-    if (reply->error() == QNetworkReply::NoError)
-    {
-        QByteArray response = reply->readAll();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
-
-        // 解析JSON数据
-        if (!jsonDoc.isArray()) {
-            // 错误处理: 如果返回的JSON不是数组
-            return;
-        }
-
-        QJsonArray jsonArray = jsonDoc.array();
-        model = new QStandardItemModel(jsonArray.size(), 6, this);
-        model->setHeaderData(0, Qt::Horizontal, tr("Business ID"));
-        model->setHeaderData(1, Qt::Horizontal, tr("Enterprise Name"));
-        model->setHeaderData(2, Qt::Horizontal, tr("Department Name"));
-        model->setHeaderData(3, Qt::Horizontal, tr("Post Name"));
-        model->setHeaderData(4, Qt::Horizontal, tr("Start Time"));
-        model->setHeaderData(5, Qt::Horizontal, tr("End Time"));
-
-        for (int i = 0; i < jsonArray.size(); ++i)
-        {
-            QJsonObject jsonObj = jsonArray.at(i).toObject();
-
-            QStandardItem* item1 = new QStandardItem(jsonObj.value("businessID").toString());
-            QStandardItem* item2 = new QStandardItem(jsonObj.value("businessEnterpriseName").toString());
-            QStandardItem* item3 = new QStandardItem(jsonObj.value("businessDepartmentName").toString());
-            QStandardItem* item4 = new QStandardItem(jsonObj.value("businessPostName").toString());
-            QStandardItem* item5 = new QStandardItem(jsonObj.value("startTime").toString());
-            QStandardItem* item6 = new QStandardItem(jsonObj.value("endTime").toString());
-
-            model->setItem(i, 0, item1);
-            model->setItem(i, 1, item2);
-            model->setItem(i, 2, item3);
-            model->setItem(i, 3, item4);
-            model->setItem(i, 4, item5);
-            model->setItem(i, 5, item6);
-        }
-
-        // 在QTableView中显示表格数据
-        ui->deployment->setModel(model);
-    }
-
-    reply->deleteLater();
-}

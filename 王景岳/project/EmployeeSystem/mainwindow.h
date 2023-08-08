@@ -8,6 +8,8 @@
 #include <QTimer>
 #include "subpage/dept_info.h"
 #include "subpage/dept_pos.h"
+#include "subpage/pre_appr.h"
+#include "subpage/sala_mana.h"
 
 /*changed*/
 #include<QMouseEvent>
@@ -44,7 +46,7 @@ private:
     Ui::MainWindow *ui;
     QButtonGroup * topgroup = new QButtonGroup(this);
     int parentIndexnow=0,indexnow=0;
-    int parentlong[6]={2,2,3,2,3,2};
+    int parentlong[6]={3,1,2,3,2,3};
     bool parentexpand[6]={1,1,1,1,1,1};
 
     QNetworkAccessManager* networkManager;
@@ -52,12 +54,17 @@ private:
 
     Dept_Info* dept_info;
     Dept_Pos* dept_pos;
+    Pre_Appr* pre_appr;
+    Sala_Mana* sala_mana;
+    /*
+     * 加入新页面
+     */
 
 private slots:
     void GetLeftPress(int index, int parentIndex); //上方标签被点击后触发的槽函数
     void GetTopPress(int index); //左侧标签被点击后触发的槽函数
     void UpdateLeft(); //定时更新左侧导航目录的槽函数
-
+    void on_toolButton_3_clicked();
     void on_btnMenu_Close_clicked();
     void on_btnMenu_Min_clicked();
     void on_btnMenu_Max_clicked();

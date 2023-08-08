@@ -17,7 +17,7 @@ Dept_Info::Dept_Info(QWidget *parent) :
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(25);
     ui->addButton->setStyleSheet("background-color:rgb(65,105,225);color:rgb(255, 255, 255);font:10pt;");
     ui->addButton->setIcon(QIcon(":/images/icons8-plus-50.png"));
-    ui->addButton->setIconSize(QSize(15,15));
+    ui->addButton->setIconSize(QSize(20,20));
     //ui->addButton->setButtonStyle(Qt::ToolButtonTextBesideIcon);
     QStringList headText;
     headText << "部门编号" << "部门名称" << "所在楼" << "所在楼层";
@@ -34,7 +34,7 @@ Dept_Info::Dept_Info(QWidget *parent) :
     manager.get(request);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotCountMessage()));
-    timer->start(10000);
+    timer->start(1000);
 }
 
 void Dept_Info::GetDept(QNetworkReply *reply)

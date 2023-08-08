@@ -6,21 +6,26 @@ Dept_Pos::Dept_Pos(QWidget *parent) :
     ui(new Ui::Dept_Pos)
 {
     ui->setupUi(this);
-    int width = ui->auth_table->width();
+    int width=ui->tabWidget->width()-2;
     ui->auth_table->setColumnCount(3);
     ui->auth_table->setColumnWidth(0, width * 0.33);
     ui->auth_table->setColumnWidth(1, width * 0.33);
     ui->auth_table->setColumnWidth(2, width * 0.34);
-    ui->post_table->setColumnCount(4);
-    ui->post_table->setColumnWidth(0, width * 0.25);
-    ui->post_table->setColumnWidth(1, width * 0.25);
-    ui->post_table->setColumnWidth(2, width * 0.25);
-    ui->post_table->setColumnWidth(3, width * 0.25);
+    ui->post_table->setColumnCount(5);
+    ui->post_table->setColumnWidth(0, width * 0.20);
+    ui->post_table->setColumnWidth(1, width * 0.20);
+    ui->post_table->setColumnWidth(2, width * 0.20);
+    ui->post_table->setColumnWidth(3, width * 0.20);
+    ui->post_table->setColumnWidth(4, width * 0.20);
     ui->staff_table->setColumnCount(4);
     ui->staff_table->setColumnWidth(0, width * 0.25);
     ui->staff_table->setColumnWidth(1, width * 0.25);
     ui->staff_table->setColumnWidth(2, width * 0.25);
     ui->staff_table->setColumnWidth(3, width * 0.25);
+
+    ui->addButton->setStyleSheet("background-color:rgb(65,105,225);color:rgb(255, 255, 255);font:8pt;");
+    ui->addButton->setIcon(QIcon(":/images/icons8-plus-50.png"));
+    ui->addButton->setIconSize(QSize(15,15));
 
     url=QUrl(QString("http://121.41.120.170:5555/api/Dept/Get?building=")+QString("办公楼1"));
     request.setUrl(url);
@@ -28,7 +33,7 @@ Dept_Pos::Dept_Pos(QWidget *parent) :
     manager.get(request);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotCountMessage()));
-    timer->start(10000);
+    timer->start(1000);
 }
 
 void Dept_Pos::GetDept(QNetworkReply *reply)
@@ -88,10 +93,12 @@ void Dept_Pos::on_comboBox_currentIndexChanged(int index)
     if(index==-1){
         return;
     }
-    ui->num_lab->setText(QString("部门编号：")+thearray->at(index).toObject().value("id").toString());
-    ui->name_lab->setText(QString("部门名称：")+thearray->at(index).toObject().value("name").toString());
-    ui->build_lab->setText(QString("所在楼：")+thearray->at(index).toObject().value("buliding").toString());
-    ui->floor_lab->setText(QString("所在楼层：")+thearray->at(index).toObject().value("layer").toString());
+    if(thearray!=NULL){
+        ui->num_lab->setText(QString("部门编号：")+thearray->at(index).toObject().value("id").toString());
+        ui->name_lab->setText(QString("部门名称：")+thearray->at(index).toObject().value("name").toString());
+        ui->build_lab->setText(QString("所在楼：")+thearray->at(index).toObject().value("buliding").toString());
+        ui->floor_lab->setText(QString("所在楼层：")+thearray->at(index).toObject().value("layer").toString());
+    }
     if(index==0){
         return;
     }
@@ -101,23 +108,15 @@ void Dept_Pos::on_comboBox_currentIndexChanged(int index)
 
 void Dept_Pos::resizeEvent(QResizeEvent *event)
 {
-    int width;
-    if(ui->tabWidget->currentIndex()==0){
-        width = ui->auth_table->width();
-    }
-    else if(ui->tabWidget->currentIndex()==1){
-        width = ui->post_table->width();
-    }
-    else{
-        width = ui->staff_table->width();
-    }
+    int width=ui->tabWidget->width()-2;
     ui->auth_table->setColumnWidth(0, width * 0.33);
     ui->auth_table->setColumnWidth(1, width * 0.33);
     ui->auth_table->setColumnWidth(2, width * 0.34);
-    ui->post_table->setColumnWidth(0, width * 0.25);
-    ui->post_table->setColumnWidth(1, width * 0.25);
-    ui->post_table->setColumnWidth(2, width * 0.25);
-    ui->post_table->setColumnWidth(3, width * 0.25);
+    ui->post_table->setColumnWidth(0, width * 0.20);
+    ui->post_table->setColumnWidth(1, width * 0.20);
+    ui->post_table->setColumnWidth(2, width * 0.20);
+    ui->post_table->setColumnWidth(3, width * 0.20);
+    ui->post_table->setColumnWidth(4, width * 0.20);
     ui->staff_table->setColumnWidth(0, width * 0.25);
     ui->staff_table->setColumnWidth(1, width * 0.25);
     ui->staff_table->setColumnWidth(2, width * 0.25);

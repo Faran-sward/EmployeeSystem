@@ -140,7 +140,7 @@ void Login::on_loginButton_clicked()
 
     QObject::connect(naManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
-    request.setUrl(QUrl::fromUserInput("http://8.130.115.212:9091/api/Values/LoginAndSign"));
+    request.setUrl(QUrl::fromUserInput("http://8.130.119.222:9091/api/Values/LoginAndSign"));
 
     QJsonObject object;
     object.insert("account",ui->numEdit->text());
@@ -175,9 +175,16 @@ void Login::requestFinished(QNetworkReply *reply)
         loginResultJson =  QString::fromStdString(bytes.toStdString());
         if(bytes.toStdString()=="OK"){
             qDebug() << "用户" << ui->numEdit->text()<<"已成功登录";
-            MainWindow* w=new MainWindow();
-            w->show();
-            this->close();
+            if(ui->numEdit->text()=="22222222"){
+                MainWindow* w=new MainWindow();
+                w->show();
+                this->close();
+            }
+            else{
+                MainWindow_Emp* w=new MainWindow_Emp();
+                w->show();
+                this->close();
+            }
         }
         else{
             ui->errorText->setStyleSheet("border: none;color:rgb(255, 0, 0);");

@@ -163,7 +163,7 @@
              <string>退出系统</string>
             </property>
             <property name="checkable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="checked">
              <bool>false</bool>
@@ -368,200 +368,8 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>-1</number>
          </property>
-         <widget class="QWidget" name="page">
-          <widget class="QLabel" name="label">
-           <property name="geometry">
-            <rect>
-             <x>210</x>
-             <y>190</y>
-             <width>40</width>
-             <height>12</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>page0</string>
-           </property>
-          </widget>
-         </widget>
-         <widget class="QWidget" name="page_2">
-          <widget class="QLabel" name="label_2">
-           <property name="geometry">
-            <rect>
-             <x>260</x>
-             <y>150</y>
-             <width>40</width>
-             <height>12</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>page1</string>
-           </property>
-          </widget>
-         </widget>
-         <widget class="QWidget" name="page_3">
-          <widget class="QLabel" name="label_3">
-           <property name="geometry">
-            <rect>
-             <x>220</x>
-             <y>150</y>
-             <width>40</width>
-             <height>12</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>page2</string>
-           </property>
-          </widget>
-         </widget>
-         <widget class="QWidget" name="page_4">
-          <widget class="QLabel" name="label_4">
-           <property name="geometry">
-            <rect>
-             <x>270</x>
-             <y>190</y>
-             <width>40</width>
-             <height>12</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>page3</string>
-           </property>
-          </widget>
-         </widget>
-         <widget class="QWidget" name="page_5">
-          <widget class="QStackedWidget" name="page5_stack">
-           <property name="geometry">
-            <rect>
-             <x>-1</x>
-             <y>19</y>
-             <width>541</width>
-             <height>471</height>
-            </rect>
-           </property>
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="page_7">
-            <widget class="QLabel" name="label_8">
-             <property name="geometry">
-              <rect>
-               <x>40</x>
-               <y>20</y>
-               <width>51</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>当前职务</string>
-             </property>
-            </widget>
-            <widget class="QTextBrowser" name="textBrowser">
-             <property name="geometry">
-              <rect>
-               <x>40</x>
-               <y>40</y>
-               <width>451</width>
-               <height>31</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pushButton">
-             <property name="geometry">
-              <rect>
-               <x>90</x>
-               <y>90</y>
-               <width>80</width>
-               <height>18</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>变动申请</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pushButton_2">
-             <property name="geometry">
-              <rect>
-               <x>300</x>
-               <y>90</y>
-               <width>80</width>
-               <height>18</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>离职申请</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_9">
-             <property name="geometry">
-              <rect>
-               <x>40</x>
-               <y>130</y>
-               <width>51</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>调配记录</string>
-             </property>
-            </widget>
-            <widget class="QTableView" name="deployment">
-             <property name="geometry">
-              <rect>
-               <x>45</x>
-               <y>150</y>
-               <width>471</width>
-               <height>192</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pushButton_3">
-             <property name="geometry">
-              <rect>
-               <x>230</x>
-               <y>360</y>
-               <width>80</width>
-               <height>18</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>调配申请</string>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QWidget" name="page_9">
-            <widget class="QLabel" name="label_6">
-             <property name="geometry">
-              <rect>
-               <x>140</x>
-               <y>140</y>
-               <width>40</width>
-               <height>12</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>pge4-2</string>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QWidget" name="page_10">
-            <widget class="QLabel" name="label_7">
-             <property name="geometry">
-              <rect>
-               <x>160</x>
-               <y>120</y>
-               <width>40</width>
-               <height>12</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>page4-3</string>
-             </property>
-            </widget>
-           </widget>
-          </widget>
-         </widget>
         </widget>
        </item>
       </layout>
@@ -569,17 +377,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>17</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

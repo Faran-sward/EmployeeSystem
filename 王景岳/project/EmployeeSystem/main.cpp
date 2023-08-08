@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
         qApp->setStyleSheet(qss);
         file.close();
     }
-    /*Login w;
-    w.show();*/
-    MainWindow w;
+    Login w;
+    /*MainWindow w;*/
+    /*MainWindow_Emp w;*/
     w.show();
     return a.exec();
 }

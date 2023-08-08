@@ -16,6 +16,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
@@ -27,9 +28,13 @@ QT_BEGIN_NAMESPACE
 class Ui_Dept_Pos
 {
 public:
-    QVBoxLayout *verticalLayout_2;
-    QSpacerItem *horizontalSpacer_3;
+    QVBoxLayout *verticalLayout;
+    QWidget *widget_2;
+    QHBoxLayout *horizontalLayout_4;
     QComboBox *comboBox;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *addButton;
+    QSpacerItem *horizontalSpacer_6;
     QWidget *widget;
     QGridLayout *gridLayout;
     QLabel *name_lab;
@@ -56,14 +61,19 @@ public:
         if (Dept_Pos->objectName().isEmpty())
             Dept_Pos->setObjectName(QString::fromUtf8("Dept_Pos"));
         Dept_Pos->resize(686, 539);
-        verticalLayout_2 = new QVBoxLayout(Dept_Pos);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(30, 10, 30, 0);
-        horizontalSpacer_3 = new QSpacerItem(623, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout_2->addItem(horizontalSpacer_3);
-
-        comboBox = new QComboBox(Dept_Pos);
+        verticalLayout = new QVBoxLayout(Dept_Pos);
+        verticalLayout->setSpacing(15);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(30, 10, 20, 0);
+        widget_2 = new QWidget(Dept_Pos);
+        widget_2->setObjectName(QString::fromUtf8("widget_2"));
+        widget_2->setMinimumSize(QSize(0, 24));
+        widget_2->setMaximumSize(QSize(16777215, 24));
+        horizontalLayout_4 = new QHBoxLayout(widget_2);
+        horizontalLayout_4->setSpacing(0);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        comboBox = new QComboBox(widget_2);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -72,7 +82,31 @@ public:
         comboBox->setSizePolicy(sizePolicy);
         comboBox->setMinimumSize(QSize(171, 21));
 
-        verticalLayout_2->addWidget(comboBox);
+        horizontalLayout_4->addWidget(comboBox);
+
+        horizontalSpacer_3 = new QSpacerItem(339, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_3);
+
+        addButton = new QPushButton(widget_2);
+        addButton->setObjectName(QString::fromUtf8("addButton"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(addButton->sizePolicy().hasHeightForWidth());
+        addButton->setSizePolicy(sizePolicy1);
+        addButton->setMinimumSize(QSize(80, 22));
+        addButton->setMaximumSize(QSize(80, 22));
+        addButton->setStyleSheet(QString::fromUtf8(""));
+
+        horizontalLayout_4->addWidget(addButton);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_6);
+
+
+        verticalLayout->addWidget(widget_2);
 
         widget = new QWidget(Dept_Pos);
         widget->setObjectName(QString::fromUtf8("widget"));
@@ -130,7 +164,7 @@ public:
         gridLayout->addItem(horizontalSpacer_5, 0, 5, 1, 1);
 
 
-        verticalLayout_2->addWidget(widget);
+        verticalLayout->addWidget(widget);
 
         tabWidget = new QTabWidget(Dept_Pos);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
@@ -161,8 +195,8 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         post_table = new QTableWidget(tab_2);
-        if (post_table->columnCount() < 4)
-            post_table->setColumnCount(4);
+        if (post_table->columnCount() < 5)
+            post_table->setColumnCount(5);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         post_table->setHorizontalHeaderItem(0, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
@@ -171,6 +205,8 @@ public:
         post_table->setHorizontalHeaderItem(2, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         post_table->setHorizontalHeaderItem(3, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        post_table->setHorizontalHeaderItem(4, __qtablewidgetitem7);
         post_table->setObjectName(QString::fromUtf8("post_table"));
 
         horizontalLayout_2->addWidget(post_table);
@@ -185,21 +221,21 @@ public:
         staff_table = new QTableWidget(tab_3);
         if (staff_table->columnCount() < 4)
             staff_table->setColumnCount(4);
-        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        staff_table->setHorizontalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
-        staff_table->setHorizontalHeaderItem(1, __qtablewidgetitem8);
+        staff_table->setHorizontalHeaderItem(0, __qtablewidgetitem8);
         QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        staff_table->setHorizontalHeaderItem(2, __qtablewidgetitem9);
+        staff_table->setHorizontalHeaderItem(1, __qtablewidgetitem9);
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        staff_table->setHorizontalHeaderItem(3, __qtablewidgetitem10);
+        staff_table->setHorizontalHeaderItem(2, __qtablewidgetitem10);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        staff_table->setHorizontalHeaderItem(3, __qtablewidgetitem11);
         staff_table->setObjectName(QString::fromUtf8("staff_table"));
 
         horizontalLayout_3->addWidget(staff_table);
 
         tabWidget->addTab(tab_3, QString());
 
-        verticalLayout_2->addWidget(tabWidget);
+        verticalLayout->addWidget(tabWidget);
 
 
         retranslateUi(Dept_Pos);
@@ -213,6 +249,7 @@ public:
     void retranslateUi(QWidget *Dept_Pos)
     {
         Dept_Pos->setWindowTitle(QCoreApplication::translate("Dept_Pos", "Form", nullptr));
+        addButton->setText(QCoreApplication::translate("Dept_Pos", " \346\226\260\345\273\272\345\262\227\344\275\215", nullptr));
         name_lab->setText(QCoreApplication::translate("Dept_Pos", "\351\203\250\351\227\250\345\220\215\347\247\260\357\274\232", nullptr));
         num_lab->setText(QCoreApplication::translate("Dept_Pos", "\351\203\250\351\227\250\347\274\226\345\217\267\357\274\232", nullptr));
         build_lab->setText(QCoreApplication::translate("Dept_Pos", "\346\211\200\345\234\250\346\245\274\357\274\232", nullptr));
@@ -232,15 +269,17 @@ public:
         ___qtablewidgetitem5->setText(QCoreApplication::translate("Dept_Pos", "\350\201\214\344\275\215\347\261\273\345\236\213", nullptr));
         QTableWidgetItem *___qtablewidgetitem6 = post_table->horizontalHeaderItem(3);
         ___qtablewidgetitem6->setText(QCoreApplication::translate("Dept_Pos", "\350\201\214\344\275\215\347\255\211\347\272\247", nullptr));
+        QTableWidgetItem *___qtablewidgetitem7 = post_table->horizontalHeaderItem(4);
+        ___qtablewidgetitem7->setText(QCoreApplication::translate("Dept_Pos", "\346\223\215\344\275\234", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("Dept_Pos", "\345\262\227\344\275\215", nullptr));
-        QTableWidgetItem *___qtablewidgetitem7 = staff_table->horizontalHeaderItem(0);
-        ___qtablewidgetitem7->setText(QCoreApplication::translate("Dept_Pos", "\345\221\230\345\267\245\345\217\267", nullptr));
-        QTableWidgetItem *___qtablewidgetitem8 = staff_table->horizontalHeaderItem(1);
-        ___qtablewidgetitem8->setText(QCoreApplication::translate("Dept_Pos", "\345\275\223\345\211\215\350\201\214\344\275\215\347\274\226\345\217\267", nullptr));
-        QTableWidgetItem *___qtablewidgetitem9 = staff_table->horizontalHeaderItem(2);
-        ___qtablewidgetitem9->setText(QCoreApplication::translate("Dept_Pos", "\345\275\223\345\211\215\346\211\200\345\234\250\345\237\216\345\270\202", nullptr));
-        QTableWidgetItem *___qtablewidgetitem10 = staff_table->horizontalHeaderItem(3);
-        ___qtablewidgetitem10->setText(QCoreApplication::translate("Dept_Pos", "\345\205\245\350\201\214\346\227\266\351\227\264", nullptr));
+        QTableWidgetItem *___qtablewidgetitem8 = staff_table->horizontalHeaderItem(0);
+        ___qtablewidgetitem8->setText(QCoreApplication::translate("Dept_Pos", "\345\221\230\345\267\245\345\217\267", nullptr));
+        QTableWidgetItem *___qtablewidgetitem9 = staff_table->horizontalHeaderItem(1);
+        ___qtablewidgetitem9->setText(QCoreApplication::translate("Dept_Pos", "\345\275\223\345\211\215\350\201\214\344\275\215\347\274\226\345\217\267", nullptr));
+        QTableWidgetItem *___qtablewidgetitem10 = staff_table->horizontalHeaderItem(2);
+        ___qtablewidgetitem10->setText(QCoreApplication::translate("Dept_Pos", "\345\275\223\345\211\215\346\211\200\345\234\250\345\237\216\345\270\202", nullptr));
+        QTableWidgetItem *___qtablewidgetitem11 = staff_table->horizontalHeaderItem(3);
+        ___qtablewidgetitem11->setText(QCoreApplication::translate("Dept_Pos", "\345\205\245\350\201\214\346\227\266\351\227\264", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("Dept_Pos", "\345\221\230\345\267\245", nullptr));
     } // retranslateUi
 

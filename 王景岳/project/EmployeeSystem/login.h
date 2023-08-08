@@ -15,6 +15,7 @@
 #include <QJsonObject>
 #include <QDebug>
 #include "mainwindow.h"
+#include "mainwindow_emp.h"
 
 namespace Ui {
 class Login;

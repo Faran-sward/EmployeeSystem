@@ -37,7 +37,7 @@ private:
     QNetworkRequest request;
     QUrl url = QUrl("");
     void GetDept(QNetworkReply *reply);
-    QJsonArray* thearray;
+    QJsonArray* thearray=NULL;
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;

@@ -13,16 +13,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -55,30 +50,6 @@ public:
     QHBoxLayout *horizontalLayout;
     NavListView *navListView;
     QStackedWidget *stackedWidget;
-    QWidget *page;
-    QLabel *label;
-    QWidget *page_2;
-    QLabel *label_2;
-    QWidget *page_3;
-    QLabel *label_3;
-    QWidget *page_4;
-    QLabel *label_4;
-    QWidget *page_5;
-    QStackedWidget *page5_stack;
-    QWidget *page_7;
-    QLabel *label_8;
-    QTextBrowser *textBrowser;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QLabel *label_9;
-    QTableView *deployment;
-    QPushButton *pushButton_3;
-    QWidget *page_9;
-    QLabel *label_6;
-    QWidget *page_10;
-    QLabel *label_7;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -155,7 +126,7 @@ public:
         toolButton_3->setObjectName(QString::fromUtf8("toolButton_3"));
         sizePolicy2.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
         toolButton_3->setSizePolicy(sizePolicy2);
-        toolButton_3->setCheckable(true);
+        toolButton_3->setCheckable(false);
         toolButton_3->setChecked(false);
         toolButton_3->setAutoExclusive(true);
         toolButton_3->setToolButtonStyle(Qt::ToolButtonTextOnly);
@@ -244,72 +215,6 @@ public:
         stackedWidget->setSizePolicy(sizePolicy5);
         stackedWidget->setMinimumSize(QSize(0, 0));
         stackedWidget->setBaseSize(QSize(0, 0));
-        page = new QWidget();
-        page->setObjectName(QString::fromUtf8("page"));
-        label = new QLabel(page);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(210, 190, 40, 12));
-        stackedWidget->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName(QString::fromUtf8("page_2"));
-        label_2 = new QLabel(page_2);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(260, 150, 40, 12));
-        stackedWidget->addWidget(page_2);
-        page_3 = new QWidget();
-        page_3->setObjectName(QString::fromUtf8("page_3"));
-        label_3 = new QLabel(page_3);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(220, 150, 40, 12));
-        stackedWidget->addWidget(page_3);
-        page_4 = new QWidget();
-        page_4->setObjectName(QString::fromUtf8("page_4"));
-        label_4 = new QLabel(page_4);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(270, 190, 40, 12));
-        stackedWidget->addWidget(page_4);
-        page_5 = new QWidget();
-        page_5->setObjectName(QString::fromUtf8("page_5"));
-        page5_stack = new QStackedWidget(page_5);
-        page5_stack->setObjectName(QString::fromUtf8("page5_stack"));
-        page5_stack->setGeometry(QRect(-1, 19, 541, 471));
-        page_7 = new QWidget();
-        page_7->setObjectName(QString::fromUtf8("page_7"));
-        label_8 = new QLabel(page_7);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setGeometry(QRect(40, 20, 51, 16));
-        textBrowser = new QTextBrowser(page_7);
-        textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
-        textBrowser->setGeometry(QRect(40, 40, 451, 31));
-        pushButton = new QPushButton(page_7);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(90, 90, 80, 18));
-        pushButton_2 = new QPushButton(page_7);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(300, 90, 80, 18));
-        label_9 = new QLabel(page_7);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(40, 130, 51, 16));
-        deployment = new QTableView(page_7);
-        deployment->setObjectName(QString::fromUtf8("deployment"));
-        deployment->setGeometry(QRect(45, 150, 471, 192));
-        pushButton_3 = new QPushButton(page_7);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(230, 360, 80, 18));
-        page5_stack->addWidget(page_7);
-        page_9 = new QWidget();
-        page_9->setObjectName(QString::fromUtf8("page_9"));
-        label_6 = new QLabel(page_9);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(140, 140, 40, 12));
-        page5_stack->addWidget(page_9);
-        page_10 = new QWidget();
-        page_10->setObjectName(QString::fromUtf8("page_10"));
-        label_7 = new QLabel(page_10);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(160, 120, 40, 12));
-        page5_stack->addWidget(page_10);
-        stackedWidget->addWidget(page_5);
 
         horizontalLayout->addWidget(stackedWidget);
 
@@ -317,18 +222,10 @@ public:
         verticalLayout->addWidget(widgetLeft);
 
         MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 17));
-        MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
-        page5_stack->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -355,17 +252,6 @@ public:
 #endif // QT_CONFIG(tooltip)
         btnMenu_Min->setText(QCoreApplication::translate("MainWindow", "\357\274\215", nullptr));
         navListView->setItems(QCoreApplication::translate("MainWindow", "\344\270\273\347\225\214\351\235\242||0||,\345\234\260\345\233\276\347\233\221\346\216\247|\344\270\273\347\225\214\351\235\242|||,\350\247\206\351\242\221\347\233\221\346\216\247|\344\270\273\347\225\214\351\235\242|||0xf03d,\350\256\276\345\244\207\347\233\221\346\216\247|\344\270\273\347\225\214\351\235\242|||0xf108,\347\263\273\347\273\237\350\256\276\347\275\256||0||,\351\230\262\345\214\272\344\277\241\346\201\257|\347\263\273\347\273\237\350\256\276\347\275\256|||0xf0e8,\344\275\215\347\275\256\350\260\203\346\225\264|\347\263\273\347\273\237\350\256\276\347\275\256|||0xf060,\345\234\260\345\233\276\347\274\226\350\276\221|\347\263\273\347\273\237\350\256\276\347\275\256|||0xf03e", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "page0", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "page1", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "page2", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "page3", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "\345\275\223\345\211\215\350\201\214\345\212\241", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "\345\217\230\345\212\250\347\224\263\350\257\267", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "\347\246\273\350\201\214\347\224\263\350\257\267", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "\350\260\203\351\205\215\350\256\260\345\275\225", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\350\260\203\351\205\215\347\224\263\350\257\267", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "pge4-2", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "page4-3", nullptr));
     } // retranslateUi
 
 };

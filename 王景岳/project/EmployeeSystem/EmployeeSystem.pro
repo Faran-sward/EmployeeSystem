@@ -12,26 +12,44 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    mainwindow_emp.cpp \
     sign.cpp \
     subpage/add_dept.cpp \
     subpage/dept_info.cpp \
-    subpage/dept_pos.cpp
+    subpage/dept_pos.cpp \
+    subpage/pre_appr.cpp \
+    subpage/sala_mana.cpp \
+    subpage_emp/dept_pos_emp.cpp \
+    subpage_emp/my_pre.cpp \
+    subpage_emp/sala_info.cpp
 
 HEADERS += \
     login.h \
     mainwindow.h \
+    mainwindow_emp.h \
     sign.h \
     subpage/add_dept.h \
     subpage/dept_info.h \
-    subpage/dept_pos.h
+    subpage/dept_pos.h \
+    subpage/pre_appr.h \
+    subpage/sala_mana.h \
+    subpage_emp/dept_pos_emp.h \
+    subpage_emp/my_pre.h \
+    subpage_emp/sala_info.h
 
 FORMS += \
     login.ui \
     mainwindow.ui \
+    mainwindow_emp.ui \
     sign.ui \
     subpage/add_dept.ui \
     subpage/dept_info.ui \
-    subpage/dept_pos.ui
+    subpage/dept_pos.ui \
+    subpage/pre_appr.ui \
+    subpage/sala_mana.ui \
+    subpage_emp/dept_pos_emp.ui \
+    subpage_emp/my_pre.ui \
+    subpage_emp/sala_info.ui
 
 DESTDIR = $$PWD/quc
 CONFIG(debug, debug|release){
