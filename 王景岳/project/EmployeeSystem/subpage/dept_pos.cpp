@@ -22,6 +22,11 @@ Dept_Pos::Dept_Pos(QWidget *parent) :
     ui->staff_table->setColumnWidth(1, width * 0.25);
     ui->staff_table->setColumnWidth(2, width * 0.25);
     ui->staff_table->setColumnWidth(3, width * 0.25);
+    ui->widget->setStyleSheet("#widget{background-color:rgb(255,255,255);}");
+    ui->widget_2->setStyleSheet("#widget_2{background-color:rgb(255,255,255);}");
+    ui->tab->setStyleSheet("border: none;");
+    ui->tab_2->setStyleSheet("border: none;");
+    ui->tab_3->setStyleSheet("border: none;");
 
     ui->addButton->setStyleSheet("background-color:rgb(65,105,225);color:rgb(255, 255, 255);font:8pt;");
     ui->addButton->setIcon(QIcon(":/images/icons8-plus-50.png"));
@@ -36,6 +41,23 @@ Dept_Pos::Dept_Pos(QWidget *parent) :
     timer->start(1000);
 }
 
+void Dept_Pos::getScrollValue()
+{
+    QScrollBar *vScrollbar = ui->comboBox->view()->verticalScrollBar();
+    nVSliderValue_0 = vScrollbar->sliderPosition();
+}
+
+void Dept_Pos::setScrollValue()
+{
+    QScrollBar *vScrollbar = ui->comboBox->view()->verticalScrollBar();
+    if(ui->comboBox->currentIndex()==0){
+        ui->comboBox->setCurrentIndex(-1);
+        vScrollbar->setSliderPosition(nVSliderValue_0);
+        ui->comboBox->setCurrentIndex(0);
+    }
+    vScrollbar->setSliderPosition(nVSliderValue_0);
+}
+
 void Dept_Pos::GetDept(QNetworkReply *reply)
 {
     QByteArray array = reply->readAll();
@@ -46,9 +68,10 @@ void Dept_Pos::GetDept(QNetworkReply *reply)
         qDebug("json error");
         return ;
     }
+    getScrollValue();
     if (!doc.isNull() &&error.error == QJsonParseError::NoError)
     {
-        qDebug() << "文件解析成功\n";
+        //qDebug() << "文件解析成功\n";
         int dept_ind=-1;
         if (doc.isArray())
         {
@@ -67,19 +90,20 @@ void Dept_Pos::GetDept(QNetworkReply *reply)
                 }
             }
         }
-        if(dept_ind!=-1){
+        if(dept_ind!=-1){ //之前所选中的部门刷新后未被删除
             ui->comboBox->setCurrentIndex(dept_ind);
         }
-        else{
+        else{ //反之，自动跳转到首个部门
             ui->comboBox->setCurrentIndex(0);
             deptname=ui->comboBox->itemText(0);
         }
     }
+    setScrollValue();
 }
 
 void Dept_Pos::slotCountMessage()
 {
-    qDebug()<<"进行一次刷新";
+    //qDebug()<<"进行一次刷新";
     manager.get(request);
 }
 
@@ -91,6 +115,7 @@ Dept_Pos::~Dept_Pos()
 void Dept_Pos::on_comboBox_currentIndexChanged(int index)
 {
     if(index==-1){
+        notchange=true;
         return;
     }
     if(thearray!=NULL){
@@ -99,7 +124,8 @@ void Dept_Pos::on_comboBox_currentIndexChanged(int index)
         ui->build_lab->setText(QString("所在楼：")+thearray->at(index).toObject().value("buliding").toString());
         ui->floor_lab->setText(QString("所在楼层：")+thearray->at(index).toObject().value("layer").toString());
     }
-    if(index==0){
+    if(index==0&&notchange){
+        notchange=false;
         return;
     }
     deptname=ui->comboBox->itemText(index);

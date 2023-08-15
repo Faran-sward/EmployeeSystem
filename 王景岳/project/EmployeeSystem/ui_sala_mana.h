@@ -41,13 +41,13 @@ public:
         verticalLayout = new QVBoxLayout(Sala_Mana);
         verticalLayout->setSpacing(15);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(30, 10, 30, 0);
+        verticalLayout->setContentsMargins(30, 15, 30, 0);
         widget = new QWidget(Sala_Mana);
         widget->setObjectName(QString::fromUtf8("widget"));
         horizontalLayout = new QHBoxLayout(widget);
-        horizontalLayout->setSpacing(0);
+        horizontalLayout->setSpacing(5);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout->setContentsMargins(10, 6, 0, 6);
         year_combo = new QComboBox(widget);
         year_combo->setObjectName(QString::fromUtf8("year_combo"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -59,7 +59,7 @@ public:
 
         horizontalLayout->addWidget(year_combo);
 
-        horizontalSpacer = new QSpacerItem(80, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(100, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
@@ -71,7 +71,7 @@ public:
 
         horizontalLayout->addWidget(month_combo);
 
-        horizontalSpacer_2 = new QSpacerItem(201, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(80, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 

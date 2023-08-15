@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QTableWidget>
@@ -23,6 +24,8 @@ class Ui_Pre_Appr
 {
 public:
     QVBoxLayout *verticalLayout;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout;
     QLabel *label;
     QTableWidget *tableWidget;
 
@@ -34,14 +37,27 @@ public:
         verticalLayout = new QVBoxLayout(Pre_Appr);
         verticalLayout->setSpacing(15);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(30, 10, 30, 0);
-        label = new QLabel(Pre_Appr);
-        label->setObjectName(QString::fromUtf8("label"));
+        verticalLayout->setContentsMargins(30, 15, 30, 30);
+        widget = new QWidget(Pre_Appr);
+        widget->setObjectName(QString::fromUtf8("widget"));
         QFont font;
         font.setPointSize(16);
-        label->setFont(font);
+        widget->setFont(font);
+        horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(10, 10, 10, 10);
+        label = new QLabel(widget);
+        label->setObjectName(QString::fromUtf8("label"));
+        QFont font1;
+        font1.setPointSize(16);
+        font1.setBold(true);
+        label->setFont(font1);
 
-        verticalLayout->addWidget(label);
+        horizontalLayout->addWidget(label);
+
+
+        verticalLayout->addWidget(widget);
 
         tableWidget = new QTableWidget(Pre_Appr);
         if (tableWidget->columnCount() < 4)

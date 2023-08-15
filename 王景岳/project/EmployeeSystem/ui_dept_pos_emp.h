@@ -220,7 +220,7 @@ public:
 
         retranslateUi(Dept_Pos_Emp);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Dept_Pos_Emp);

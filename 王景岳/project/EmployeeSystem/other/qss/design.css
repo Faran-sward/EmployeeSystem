@@ -126,7 +126,7 @@ image:None;
 
 QToolButton#btnMenu,QPushButton#btnMenu_Min,QPushButton#btnMenu_Max,QPushButton#btnMenu_Close{
 border-radius:3px;
-color:#57595B;
+color:#c3dbf4;
 padding:3px;
 margin:0px;
 background:none;
@@ -644,3 +644,45 @@ border-color:#FFFFFF;
 /*DarkColorStart:#F6F6F6*/
 /*DarkColorEnd:#F6F6F6*/
 /*HighColor:#03B3FF*/
+#widgetTitle{
+background-color:rgb(65,105,225);
+}
+#toolButton{
+    background-color: rgba(255, 255, 255, 0); /* 设置透明背景色 */
+    font: 25 10pt '微软雅黑 Light';
+    color: #FFFFFF; /* 字体颜色为白色 */
+}
+#toolButton:hover{
+    border-bottom-color: #FFFFFF;
+    background-color:rgba(255, 255, 255, 0.2);
+}
+#toolButton:checked{
+    border-bottom-color: #FFFFFF;
+    background-color:rgba(255, 255, 255, 0.4);
+}
+#toolButton_2{
+    background-color: rgba(255, 255, 255, 0); /* 设置透明背景色 */
+    font: 25 10pt '微软雅黑 Light';
+    color: #FFFFFF; /* 字体颜色为白色 */
+}
+#toolButton_2:hover{
+    border-bottom-color: #FFFFFF;
+    background-color:rgba(255, 255, 255, 0.2);
+}
+#toolButton_2:checked{
+    border-bottom-color: #FFFFFF;
+    background-color:rgba(255, 255, 255, 0.4);
+}
+#toolButton_3{
+    background-color: rgba(255, 255, 255, 0); /* 设置透明背景色 */
+    font: 25 10pt '微软雅黑 Light';
+    color: #FFFFFF; /* 字体颜色为白色 */
+}
+#toolButton_3:hover{
+    border-bottom-color: #FFFFFF;
+    background-color:rgba(255, 255, 255, 0.2);
+}
+#toolButton_3:checked{
+    border-bottom-color: #FFFFFF;
+    background-color:rgba(255, 255, 255, 0.4);
+}

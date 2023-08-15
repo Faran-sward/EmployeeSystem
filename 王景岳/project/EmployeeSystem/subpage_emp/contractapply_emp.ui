@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ContractApply_emp</class>
+ <widget class="QWidget" name="ContractApply_emp">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>892</width>
+    <height>539</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="maximumSize">
+      <size>
+       <width>231</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;我的合同申请&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="maximumSize">
+      <size>
+       <width>2000</width>
+       <height>371</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>合同续约申请</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QTableWidget" name="tableWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <row>
+          <property name="text">
+           <string/>
+          </property>
+         </row>
+         <column>
+          <property name="text">
+           <string>申请号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>申请人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>员工号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>续约时间</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>申请进度</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>受理人</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>合同变更申请</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QTableWidget" name="tableWidget_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <row>
+          <property name="text">
+           <string/>
+          </property>
+         </row>
+         <column>
+          <property name="text">
+           <string>申请号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>申请人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>员工号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>变更内容</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>申请进度</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>受理人</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>合同解约申请</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QTableWidget" name="tableWidget_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>5000</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <row>
+          <property name="text">
+           <string/>
+          </property>
+         </row>
+         <column>
+          <property name="text">
+           <string>申请号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>申请人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>员工号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>解约原因</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>申请进度</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>受理人</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

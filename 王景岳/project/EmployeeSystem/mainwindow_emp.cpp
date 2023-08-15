@@ -1,32 +1,44 @@
-#include "mainwindow_emp.h"
+﻿#include "mainwindow_emp.h"
 #include "ui_mainwindow_emp.h"
 
 /*
  * 该窗口是员工登录后进入的主界面
  */
-MainWindow_Emp::MainWindow_Emp(QWidget *parent)
+MainWindow_Emp::MainWindow_Emp(QString num,QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow_Emp)
 {
     ui->setupUi(this);
+
+    jobnum=num;
+    qDebug()<<"当前登录工号："<<jobnum;
+    QImage image;
+    image.load(":/images/head_icon.png");
+    ui->labIco->setScaledContents(true);
+    ui->labIco->setPixmap(QPixmap::fromImage(image));
+
     //设置左侧标签导航栏内容与样式
     QString str="组织规划||0||,部门信息|组织规划|||,我的编制申请|组织规划|||,薪资管理||0||,我的薪资|薪资管理|||,员工信息||0||,我的信息|员工信息|||,我的简历|员工信息|||,职务管理||0||,我的职务|职务管理|||,我的申请|职务管理|||,合同管理||0||,我的合同|合同管理|||,合同申请|合同管理|||,考勤管理||0||,我的考勤|考勤管理|||,加班申请|考勤管理|||,休假申请|考勤管理|||";
 
     ui->navListView->setItems(str);
-    ui->navListView->setChildBgNormalColor(QColor(255,255,255));
-    ui->navListView->setChildTextNormalColor(QColor(0,0,0));
-    ui->navListView->setChildBgHoverColor(QColor(100,149,255));
-    ui->navListView->setChildTextHoverColor(QColor(255,255,255));
-    ui->navListView->setChildBgSelectedColor(QColor(255,255,255));
-    ui->navListView->setChildTextSelectedColor(QColor(0,0,0));
-    ui->navListView->setTriangleColor(QColor(100,149,255));
-    ui->navListView->setLineColor(QColor(100,149,255));
-    ui->navListView->setParentBgNormalColor(QColor(65,105,225));
-    ui->navListView->setParentTextNormalColor(QColor(255,255,255));
-    ui->navListView->setParentBgHoverColor(QColor(0,0,255));
-    ui->navListView->setParentTextHoverColor(QColor(255,255,255));
-    ui->navListView->setParentBgSelectedColor(QColor(65,105,225));
-    ui->navListView->setParentTextSelectedColor(QColor(255,255,255));
+    ui->navListView->setChildBgNormalColor(QColor(100,149,255));//
+    ui->navListView->setChildTextNormalColor(QColor(255,255,255));//
+    ui->navListView->setChildBgHoverColor(QColor(100,149,255,100));//
+    ui->navListView->setChildTextHoverColor(QColor(0,0,0));//
+    ui->navListView->setChildBgSelectedColor(QColor(100,149,255,200));
+    ui->navListView->setChildTextSelectedColor(QColor(255,255,255));//
+    ui->navListView->setTriangleColor(QColor(255,255,255));//
+
+    ui->navListView->setLineColor(QColor(255,255,255));//
+
+    ui->navListView->setParentBgNormalColor(QColor(65,105,225));//
+    ui->navListView->setParentTextNormalColor(QColor(255,255,255));//
+    ui->navListView->setParentBgHoverColor(QColor(65,105,225,100));//
+    ui->navListView->setParentTextHoverColor(QColor(0,0,0));//
+    ui->navListView->setParentBgSelectedColor(QColor(65,105,225,200));//
+    ui->navListView->setParentTextSelectedColor(QColor(0,0,0));//
+    ui->navListView->setStyleSheet("border: none;");
+    ui->stackedWidget->setStyleSheet("#stackedWidget{background-color:rgb(240,240,240);}");
     /*changed*/
     //注册事件过滤器
     installEventFilter(this);
@@ -51,17 +63,38 @@ MainWindow_Emp::MainWindow_Emp(QWidget *parent)
     ui->stackedWidget->addWidget(my_pre);
     sala_info=new Sala_Info();
     ui->stackedWidget->addWidget(sala_info);
+    myinfomation_emp = new MyInfomation_Emp();
+    ui->stackedWidget->addWidget(myinfomation_emp);
+    resume_emp = new Resume_Emp();
+    ui->stackedWidget->addWidget(resume_emp);
+    deployment_emp = new Deployment_Emp();
+    ui->stackedWidget->addWidget(deployment_emp);
+    myApply_emp = new MyApply_Emp();
+    ui->stackedWidget->addWidget(myApply_emp);
+    mycontract_info=new Mycontract_Info();
+    ui->stackedWidget->addWidget(mycontract_info);
+    contractapply_emp=new ContractApply_emp();
+    ui->stackedWidget->addWidget(contractapply_emp);
+    myattendance = new MyAttendance();
+    ui->stackedWidget->addWidget(myattendance);
+    overtime_emp = new Overtime_Emp();
+    ui->stackedWidget->addWidget(overtime_emp);
+    vacation_emp = new Vacation_Emp();
+    ui->stackedWidget->addWidget(vacation_emp);
     /*
      * 加入新页面
      */
 
+
     connect(ui->navListView,SIGNAL(pressed(int,int)),this,SLOT(GetLeftPress(int,int)));
     connect(topgroup,SIGNAL(buttonClicked(int)),this,SLOT(GetTopPress(int)));
+    connect(ui->toolButton_3,SIGNAL(pressed()),this,SLOT(this.on_toolButton_3_clicked()));
     ui->navListView->setCurrentRow(1);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(UpdateLeft()));
     timer->start(10);
-    ui->stackedWidget->setCurrentIndex(0);
+    myattendance->show_table();
+    overtime_emp->show_overtime();
 }
 
 MainWindow_Emp::~MainWindow_Emp()
@@ -153,7 +186,6 @@ void MainWindow_Emp::GetTopPress(int index)
 
 void MainWindow_Emp::on_toolButton_3_clicked()
 {
-
     close();
 }
 

@@ -28,5 +28,7 @@
         <file>images/icons8-minimize-100.png</file>
         <file>images/mainicon.png</file>
         <file>images/icons8-plus-50.png</file>
+        <file>images/smallwhite.png</file>
+        <file>images/head_icon.png</file>
     </qresource>
 </RCC>

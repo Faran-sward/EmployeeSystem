@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_EMP_H
+﻿#ifndef MAINWINDOW_EMP_H
 #define MAINWINDOW_EMP_H
 
 #include "qabstractbutton.h"
@@ -9,6 +9,15 @@
 #include "subpage_emp/sala_info.h"
 #include "subpage_emp/dept_pos_emp.h"
 #include "subpage_emp/my_pre.h"
+#include "subpage_emp/deployment_emp.h"
+#include "subpage_emp/myInfomation_emp.h"
+#include "subpage_emp/resume_emp.h"
+#include "subpage_emp/myApply_emp.h"
+#include "subpage_emp/mycontract_info.h"
+#include "subpage_emp/contractapply_emp.h"
+#include "subpage_emp/myattendance.h"
+#include "subpage_emp/overtime_emp.h"
+#include "subpage_emp/vacation_emp.h"
 
 /*changed*/
 #include<QMouseEvent>
@@ -31,12 +40,13 @@ class MainWindow_Emp : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow_Emp(QWidget *parent = nullptr);
+    MainWindow_Emp(QString num,QWidget *parent = nullptr);
     ~MainWindow_Emp();
     void closeEvent( QCloseEvent * event )override;
 
     void requestData(const QString& empID);
     void handleNetworkReply();
+
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event)override;
@@ -47,6 +57,7 @@ private:
     int parentIndexnow=0,indexnow=0;
     int parentlong[6]={2,1,2,2,2,3};
     bool parentexpand[6]={1,1,1,1,1,1};
+    QString jobnum;
 
     QNetworkAccessManager* networkManager;
     QStandardItemModel* model;
@@ -54,6 +65,15 @@ private:
     Sala_Info* sala_info;
     Dept_Pos_Emp* dept_pos_emp;
     My_Pre* my_pre;
+    Deployment_Emp *deployment_emp;
+    MyInfomation_Emp* myinfomation_emp;
+    Resume_Emp* resume_emp;
+    MyApply_Emp* myApply_emp;
+    Mycontract_Info* mycontract_info;
+    ContractApply_emp* contractapply_emp;
+    MyAttendance* myattendance;
+    Overtime_Emp* overtime_emp;
+    Vacation_Emp* vacation_emp;
     /*
      * 加入新页面
      */

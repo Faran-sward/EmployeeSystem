@@ -46,8 +46,8 @@ Login::Login(QWidget *parent) :
     ui->passEdit->setStyleSheet("border: none;");
     ui->widget->setStyleSheet("border:1px solid #B6B6B6;border-radius:5px;");
     ui->widget_2->setStyleSheet("border:1px solid #B6B6B6;border-radius:5px;");
-    ui->widget_3->setStyleSheet("background-color:rgb(86, 144, 130);");
-    ui->loginButton->setStyleSheet("background-color:rgb(86, 144, 130);color:rgb(255, 255, 255);");
+    ui->widget_3->setStyleSheet("background-color:rgb(65,105,225);");
+    ui->loginButton->setStyleSheet("background-color:rgb(65,105,225);color:rgb(255, 255, 255);");
     ui->errorText->setStyleSheet("border: none;color:rgb(255, 0, 0);");
 
     //设置输入框范围
@@ -176,12 +176,12 @@ void Login::requestFinished(QNetworkReply *reply)
         if(bytes.toStdString()=="OK"){
             qDebug() << "用户" << ui->numEdit->text()<<"已成功登录";
             if(ui->numEdit->text()=="22222222"){
-                MainWindow* w=new MainWindow();
+                MainWindow* w=new MainWindow(ui->numEdit->text());
                 w->show();
                 this->close();
             }
             else{
-                MainWindow_Emp* w=new MainWindow_Emp();
+                MainWindow_Emp* w=new MainWindow_Emp(ui->numEdit->text());
                 w->show();
                 this->close();
             }

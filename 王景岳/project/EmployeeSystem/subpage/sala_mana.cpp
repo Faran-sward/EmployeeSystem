@@ -27,6 +27,7 @@ Sala_Mana::Sala_Mana(QWidget *parent) :
     ui->tableWidget->setColumnWidth(4, width * 0.14);
     ui->tableWidget->setColumnWidth(5, width * 0.15);
     ui->tableWidget->setColumnWidth(6, width * 0.15);
+    ui->widget->setStyleSheet("#widget{background-color:rgb(255,255,255);}");
 }
 
 Sala_Mana::~Sala_Mana()

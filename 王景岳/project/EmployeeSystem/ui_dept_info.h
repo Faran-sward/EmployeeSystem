@@ -39,7 +39,7 @@ public:
         verticalLayout = new QVBoxLayout(Dept_Info);
         verticalLayout->setSpacing(15);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(30, 10, 30, 0);
+        verticalLayout->setContentsMargins(30, 15, 30, 30);
         widget = new QWidget(Dept_Info);
         widget->setObjectName(QString::fromUtf8("widget"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -51,11 +51,12 @@ public:
         horizontalLayout = new QHBoxLayout(widget);
         horizontalLayout->setSpacing(100);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout->setContentsMargins(10, 5, 10, 5);
         label = new QLabel(widget);
         label->setObjectName(QString::fromUtf8("label"));
         QFont font;
         font.setPointSize(16);
+        font.setBold(true);
         label->setFont(font);
 
         horizontalLayout->addWidget(label);
@@ -89,6 +90,11 @@ public:
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy2);
 
         verticalLayout->addWidget(tableWidget);
 

@@ -1,4 +1,4 @@
-#include "login.h"
+﻿#include "login.h"
 #include <QFile>
 #include <QApplication>
 
@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
         qApp->setStyleSheet(qss);
         file.close();
     }
-    Login w;
-    /*MainWindow w;*/
-    /*MainWindow_Emp w;*/
+    //Login w;
+    MainWindow w(QString("22222222"));
+    //MainWindow_Emp w(QString("11111111"));
     w.show();
     return a.exec();
 }

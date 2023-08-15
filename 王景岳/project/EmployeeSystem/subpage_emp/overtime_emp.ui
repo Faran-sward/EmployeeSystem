@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Overtime_Emp</class>
+ <widget class="QWidget" name="Overtime_Emp">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>898</width>
+    <height>508</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" rowstretch="1,0,10">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1,6,1,1">
+     <item>
+      <widget class="QPushButton" name="request">
+       <property name="styleSheet">
+        <string notr="true">#request {
+    font: 25 10pt '微软雅黑 Light';
+    color: rgb(255, 255, 255);
+	padding-left:20px;
+	padding-right:20px;
+    background-color: #2F80ED;
+    border: 2px;
+    border-radius: 10px;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>申请</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="refresh">
+       <property name="styleSheet">
+        <string notr="true">#refresh {
+    font: 25 10pt '微软雅黑 Light';
+    color: rgb(255, 255, 255);
+	padding-left:20px;
+	padding-right:20px;
+    background-color: rgb(98,98,98);
+    border: 2px;
+    border-radius: 10px;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>刷新</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;黑体&quot;;</string>
+       </property>
+       <property name="text">
+        <string>加班申请</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QTableView" name="work_table">
+     <property name="styleSheet">
+      <string notr="true">QHeaderView::section:horizontal{
+	background-color: rgb(85, 170, 255);
+}
+QHeaderView::section{
+color:black;
+}
+QTableView
+{
+background-color: rgb(230, 230, 230);
+alternate-background-color:rgb(255,255,255);
+}</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

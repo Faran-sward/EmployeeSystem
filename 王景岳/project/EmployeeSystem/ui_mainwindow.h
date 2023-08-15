@@ -33,7 +33,6 @@ public:
     QWidget *widgetTitle;
     QHBoxLayout *horizontalLayout_3;
     QLabel *labIco;
-    QLabel *labTitle;
     QWidget *widgetTop;
     QHBoxLayout *horizontalLayout_2;
     QToolButton *toolButton;
@@ -64,11 +63,12 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         widgetTitle = new QWidget(centralwidget);
         widgetTitle->setObjectName(QString::fromUtf8("widgetTitle"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(widgetTitle->sizePolicy().hasHeightForWidth());
         widgetTitle->setSizePolicy(sizePolicy);
+        widgetTitle->setMaximumSize(QSize(16777215, 70));
         widgetTitle->setStyleSheet(QString::fromUtf8(""));
         horizontalLayout_3 = new QHBoxLayout(widgetTitle);
         horizontalLayout_3->setSpacing(0);
@@ -76,21 +76,14 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         labIco = new QLabel(widgetTitle);
         labIco->setObjectName(QString::fromUtf8("labIco"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(labIco->sizePolicy().hasHeightForWidth());
+        labIco->setSizePolicy(sizePolicy1);
         labIco->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_3->addWidget(labIco);
-
-        labTitle = new QLabel(widgetTitle);
-        labTitle->setObjectName(QString::fromUtf8("labTitle"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(labTitle->sizePolicy().hasHeightForWidth());
-        labTitle->setSizePolicy(sizePolicy1);
-        labTitle->setStyleSheet(QString::fromUtf8(""));
-        labTitle->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-
-        horizontalLayout_3->addWidget(labTitle);
 
         widgetTop = new QWidget(widgetTitle);
         widgetTop->setObjectName(QString::fromUtf8("widgetTop"));
@@ -105,6 +98,7 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(toolButton->sizePolicy().hasHeightForWidth());
         toolButton->setSizePolicy(sizePolicy2);
+        toolButton->setStyleSheet(QString::fromUtf8(""));
         toolButton->setCheckable(true);
         toolButton->setAutoExclusive(true);
         toolButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
@@ -116,6 +110,7 @@ public:
         toolButton_2->setObjectName(QString::fromUtf8("toolButton_2"));
         sizePolicy2.setHeightForWidth(toolButton_2->sizePolicy().hasHeightForWidth());
         toolButton_2->setSizePolicy(sizePolicy2);
+        toolButton_2->setStyleSheet(QString::fromUtf8(""));
         toolButton_2->setCheckable(true);
         toolButton_2->setAutoExclusive(true);
         toolButton_2->setToolButtonStyle(Qt::ToolButtonTextOnly);
@@ -126,6 +121,7 @@ public:
         toolButton_3->setObjectName(QString::fromUtf8("toolButton_3"));
         sizePolicy2.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
         toolButton_3->setSizePolicy(sizePolicy2);
+        toolButton_3->setStyleSheet(QString::fromUtf8(""));
         toolButton_3->setCheckable(false);
         toolButton_3->setChecked(false);
         toolButton_3->setAutoExclusive(true);
@@ -196,11 +192,9 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         navListView = new NavListView(widgetLeft);
         navListView->setObjectName(QString::fromUtf8("navListView"));
-        QSizePolicy sizePolicy4(QSizePolicy::Fixed, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(navListView->sizePolicy().hasHeightForWidth());
-        navListView->setSizePolicy(sizePolicy4);
+        sizePolicy1.setHeightForWidth(navListView->sizePolicy().hasHeightForWidth());
+        navListView->setSizePolicy(sizePolicy1);
+        navListView->setStyleSheet(QString::fromUtf8(""));
         navListView->setSeparateVisible(false);
         navListView->setSeparateHeight(1);
 
@@ -208,11 +202,11 @@ public:
 
         stackedWidget = new QStackedWidget(widgetLeft);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
-        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
-        stackedWidget->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
+        stackedWidget->setSizePolicy(sizePolicy4);
         stackedWidget->setMinimumSize(QSize(0, 0));
         stackedWidget->setBaseSize(QSize(0, 0));
 
@@ -235,7 +229,6 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         labIco->setText(QString());
-        labTitle->setText(QString());
         toolButton->setText(QCoreApplication::translate("MainWindow", "\345\205\254\345\217\270\347\256\200\344\273\213", nullptr));
         toolButton_2->setText(QCoreApplication::translate("MainWindow", "\351\200\232\347\237\245\344\277\241\346\201\257", nullptr));
         toolButton_3->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\347\263\273\347\273\237", nullptr));

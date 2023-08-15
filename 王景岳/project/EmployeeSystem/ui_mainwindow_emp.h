@@ -82,7 +82,7 @@ public:
 
         labTitle = new QLabel(widgetTitle);
         labTitle->setObjectName(QString::fromUtf8("labTitle"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(labTitle->sizePolicy().hasHeightForWidth());
@@ -105,6 +105,7 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(toolButton->sizePolicy().hasHeightForWidth());
         toolButton->setSizePolicy(sizePolicy2);
+        toolButton->setStyleSheet(QString::fromUtf8(""));
         toolButton->setCheckable(true);
         toolButton->setAutoExclusive(true);
         toolButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
@@ -116,6 +117,7 @@ public:
         toolButton_2->setObjectName(QString::fromUtf8("toolButton_2"));
         sizePolicy2.setHeightForWidth(toolButton_2->sizePolicy().hasHeightForWidth());
         toolButton_2->setSizePolicy(sizePolicy2);
+        toolButton_2->setStyleSheet(QString::fromUtf8(""));
         toolButton_2->setCheckable(true);
         toolButton_2->setAutoExclusive(true);
         toolButton_2->setToolButtonStyle(Qt::ToolButtonTextOnly);
@@ -126,6 +128,7 @@ public:
         toolButton_3->setObjectName(QString::fromUtf8("toolButton_3"));
         sizePolicy2.setHeightForWidth(toolButton_3->sizePolicy().hasHeightForWidth());
         toolButton_3->setSizePolicy(sizePolicy2);
+        toolButton_3->setStyleSheet(QString::fromUtf8(""));
         toolButton_3->setCheckable(false);
         toolButton_3->setChecked(false);
         toolButton_3->setAutoExclusive(true);
@@ -201,6 +204,7 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(navListView->sizePolicy().hasHeightForWidth());
         navListView->setSizePolicy(sizePolicy4);
+        navListView->setStyleSheet(QString::fromUtf8(""));
         navListView->setSeparateVisible(false);
         navListView->setSeparateHeight(1);
 

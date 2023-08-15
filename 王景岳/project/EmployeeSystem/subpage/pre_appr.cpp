@@ -12,6 +12,7 @@ Pre_Appr::Pre_Appr(QWidget *parent) :
     ui->tableWidget->setColumnWidth(1, width * 0.25);
     ui->tableWidget->setColumnWidth(2, width * 0.25);
     ui->tableWidget->setColumnWidth(3, width * 0.25);
+    ui->widget->setStyleSheet("#widget{background-color:rgb(255,255,255);}");
 }
 
 Pre_Appr::~Pre_Appr()

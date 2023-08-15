@@ -60,19 +60,21 @@ public:
     {
         if (Dept_Pos->objectName().isEmpty())
             Dept_Pos->setObjectName(QString::fromUtf8("Dept_Pos"));
-        Dept_Pos->resize(686, 539);
+        Dept_Pos->resize(701, 539);
+        Dept_Pos->setStyleSheet(QString::fromUtf8("\\"));
         verticalLayout = new QVBoxLayout(Dept_Pos);
         verticalLayout->setSpacing(15);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(30, 10, 20, 0);
+        verticalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+        verticalLayout->setContentsMargins(30, 15, 20, 30);
         widget_2 = new QWidget(Dept_Pos);
         widget_2->setObjectName(QString::fromUtf8("widget_2"));
-        widget_2->setMinimumSize(QSize(0, 24));
-        widget_2->setMaximumSize(QSize(16777215, 24));
+        widget_2->setMinimumSize(QSize(0, 36));
+        widget_2->setMaximumSize(QSize(16777215, 36));
         horizontalLayout_4 = new QHBoxLayout(widget_2);
         horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_4->setContentsMargins(10, 0, 0, 0);
         comboBox = new QComboBox(widget_2);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -114,7 +116,7 @@ public:
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setHorizontalSpacing(5);
         gridLayout->setVerticalSpacing(7);
-        gridLayout->setContentsMargins(0, 0, -1, 0);
+        gridLayout->setContentsMargins(10, 5, 5, 5);
         name_lab = new QLabel(widget);
         name_lab->setObjectName(QString::fromUtf8("name_lab"));
         sizePolicy.setHeightForWidth(name_lab->sizePolicy().hasHeightForWidth());
@@ -168,8 +170,10 @@ public:
 
         tabWidget = new QTabWidget(Dept_Pos);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
+        tab->setStyleSheet(QString::fromUtf8(""));
         horizontalLayout = new QHBoxLayout(tab);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -184,6 +188,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         auth_table->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         auth_table->setObjectName(QString::fromUtf8("auth_table"));
+        auth_table->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout->addWidget(auth_table);
 

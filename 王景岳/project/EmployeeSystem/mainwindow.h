@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include "qabstractbutton.h"
@@ -10,6 +10,16 @@
 #include "subpage/dept_pos.h"
 #include "subpage/pre_appr.h"
 #include "subpage/sala_mana.h"
+#include "subpage/myInfomation.h"
+#include "subpage/resume.h"
+#include "subpage/deployment.h"
+#include "subpage/myApply.h"
+#include "subpage/solveApply.h"
+#include "subpage/allcontract_info.h"
+#include "subpage/contractapply.h"
+#include "subpage/attendance_info.h"
+#include "subpage/schedule.h"
+#include "subpage/attendance_apply.h"
 
 /*changed*/
 #include<QMouseEvent>
@@ -32,7 +42,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QString num,QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent( QCloseEvent * event )override;
 
@@ -48,6 +58,7 @@ private:
     int parentIndexnow=0,indexnow=0;
     int parentlong[6]={3,1,2,3,2,3};
     bool parentexpand[6]={1,1,1,1,1,1};
+    QString jobnum;
 
     QNetworkAccessManager* networkManager;
     QStandardItemModel* model;
@@ -56,6 +67,16 @@ private:
     Dept_Pos* dept_pos;
     Pre_Appr* pre_appr;
     Sala_Mana* sala_mana;
+    MyInfomation* myinfomation;
+    Resume* resume;
+    Deployment *deployment;
+    MyApply *myapply;
+    SolveApply * solveapply;
+    Allcontract_Info* allcontractinfo;
+    ContractApply* contractapply;
+    Attendance_Info* attendance_info;
+    Schedule* schedule;
+    Attendance_Apply* attendance_apply;
     /*
      * 加入新页面
      */

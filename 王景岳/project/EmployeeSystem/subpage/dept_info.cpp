@@ -28,6 +28,8 @@ Dept_Info::Dept_Info(QWidget *parent) :
     ui->tableWidget->setAlternatingRowColors(true);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->widget->setStyleSheet("#widget{background-color:rgb(255,255,255);}");
+
     url=QUrl(QString("http://121.41.120.170:5555/api/Dept/Get?building=")+QString("办公楼1"));
     request.setUrl(url);
     connect(&manager,&QNetworkAccessManager::finished,this,&Dept_Info::GetDept);
@@ -37,8 +39,27 @@ Dept_Info::Dept_Info(QWidget *parent) :
     timer->start(1000);
 }
 
+void Dept_Info::getScrollValue()
+{
+    QScrollBar *vScrollbar = ui->tableWidget->verticalScrollBar();
+    nVSliderValue = vScrollbar->sliderPosition();
+
+    QScrollBar *hScrollbar = ui->tableWidget->horizontalScrollBar();
+    nHSliderValue = hScrollbar->sliderPosition();
+}
+
+void Dept_Info::setScrollValue()
+{
+    QScrollBar *vScrollbar = ui->tableWidget->verticalScrollBar();
+    vScrollbar->setSliderPosition(nVSliderValue);
+
+    QScrollBar *hScrollbar = ui->tableWidget->horizontalScrollBar();
+    hScrollbar->setSliderPosition(nHSliderValue);
+}
+
 void Dept_Info::GetDept(QNetworkReply *reply)
 {
+    getScrollValue();
     QByteArray array = reply->readAll();
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(array,&error);
@@ -49,7 +70,7 @@ void Dept_Info::GetDept(QNetworkReply *reply)
     }
     if (!doc.isNull() &&error.error == QJsonParseError::NoError)
     {
-        qDebug() << "文件解析成功\n";
+        //qDebug() << "文件解析成功\n";
         if (doc.isArray())
         {
             QJsonArray array = doc.array();  // 转数组
@@ -79,11 +100,12 @@ void Dept_Info::GetDept(QNetworkReply *reply)
             }
         }
     }
+    setScrollValue();
 }
 
 void Dept_Info::slotCountMessage()
 {
-    qDebug()<<"进行一次刷新";
+    //qDebug()<<"进行一次刷新";
     manager.get(request);
 }
 

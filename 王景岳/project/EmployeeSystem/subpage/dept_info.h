@@ -17,6 +17,8 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QResizeEvent>
+#include <QStandardItem>
+#include <QScrollBar>
 
 namespace Ui {
 class Dept_Info;
@@ -33,9 +35,14 @@ public:
 private:
     Ui::Dept_Info *ui;
     QNetworkAccessManager manager;
+    QStandardItemModel *model;
     QNetworkRequest request;
     QUrl url = QUrl("");
     void GetDept(QNetworkReply *reply);
+    int nVSliderValue = 0;
+    int nHSliderValue = 0;
+    void getScrollValue();
+    void setScrollValue();
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
