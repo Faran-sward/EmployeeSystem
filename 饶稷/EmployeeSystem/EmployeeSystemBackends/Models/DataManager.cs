@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using EmployeeSystemBackends.Models.Tables;
+using Oracle.ManagedDataAccess.Client;
 using System.Text;
 
 namespace EmployeeSystemBackends.Models.DataManager
@@ -41,6 +42,30 @@ namespace EmployeeSystemBackends.Models.DataManager
                     sqlBuilder.Append(" AND ");
                 }
             }
+
+            return sqlBuilder.ToString();
+        }
+
+        // 对单个表的查询生成Sql语句，不包含where子句，返回数据库中所有内容
+        // table_name为待查表的名字
+        // result_names为表中待查属性
+        // 不检查result_names的合法性，只是单纯生成字符串
+        public static string SearchAll(string table_name, string[] result_names)
+        {
+            StringBuilder sqlBuilder = new StringBuilder();
+
+            sqlBuilder.Append("SELECT ");
+            for (int i = 0; i < result_names.Length; i++)
+            {
+                sqlBuilder.Append(result_names[i]);
+                if (i < result_names.Length - 1)
+                {
+                    sqlBuilder.Append(", ");
+                }
+            }
+
+            sqlBuilder.Append(" FROM ");
+            sqlBuilder.Append(table_name);
 
             return sqlBuilder.ToString();
         }
@@ -172,22 +197,39 @@ namespace EmployeeSystemBackends.Models.DataManager
                 string param_name = ":" + names[i]; // 构造参数名，例如 ":param1"
                 string param_value = values[i]; // 获取对应的值
 
-                if (float.TryParse(param_value, out float float_value))
+                if (IsNumberChart(param_name))
                 {
-                    cmd.Parameters.Add(new OracleParameter(param_name, float_value));
-                }
-                else if (int.TryParse(param_value, out int int_value))
-                {
-                    cmd.Parameters.Add(new OracleParameter(param_name, int_value));
+                    if (int.TryParse(param_value, out int int_value))
+                    {
+                        cmd.Parameters.Add(new OracleParameter(param_name, int_value));
+                    }
+                    else if (float.TryParse(param_value, out float float_value))
+                    {
+                        cmd.Parameters.Add(new OracleParameter(param_name, float_value));
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add(new OracleParameter(param_name, param_value));
+                    }
                 }
                 else
-                {
                     cmd.Parameters.Add(new OracleParameter(param_name, param_value));
-                }
             }
 
             return cmd;
         }
         
+        // 给参数赋值的时候需要做一下判断
+        private static bool IsNumberChart(string param_name)
+        {
+            string name = param_name.Substring(6, param_name.Length - 6);
+            bool isNumberChart = Array.Exists(AttributeNames.EducationInfoAttributeNames, element => element == name) |
+                Array.Exists(AttributeNames.EmpSalaryAttributeNames, element => element == name) |
+                Array.Exists(AttributeNames.DeptPostAttributeNames, element => element == name) |
+                Array.Exists(AttributeNames.DepartmentInfoAttributeNames, element => element == name);
+            Console.WriteLine(name);
+            Console.WriteLine(isNumberChart);
+            return isNumberChart;
+        }
     }
 }
