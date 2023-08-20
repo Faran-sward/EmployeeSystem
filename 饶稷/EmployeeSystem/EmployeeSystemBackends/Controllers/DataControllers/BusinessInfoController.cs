@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeSystemBackends.Models.DataManager;
 using EmployeeSystemBackends.Models.Tables;
-using EmployeeSystemBackends.Models.DataValidator;
 using Newtonsoft.Json;
 
 namespace EmployeeSystemBackends.Controllers.DataControllers
@@ -10,6 +9,40 @@ namespace EmployeeSystemBackends.Controllers.DataControllers
     [ApiController]
     public class BusinessInfoController : ControllerBase
     {
+        public IActionResult GetAll()
+        {
+            try
+            {
+                // json = Base64ForJson.Base64Decode(json);  // add: 将前端传来的数据解码
+
+                BusinessInfoManager manager = new BusinessInfoManager();  // 负责与数据库交互的manager
+                if (!manager.GetAll(out List<BusinessInfo> tables))
+                    return StatusCode(500, $"读取数据失败:");  // 获取数据存放在table中
+
+                List<object> jsonResults = new List<object>();
+
+                foreach (BusinessInfo table in tables)
+                {
+                    string result = table.GetValuesAsJson();  // 将结果转化为 JSON 格式
+                    object? jsonObject = JsonConvert.DeserializeObject(result); // 反序列化 JSON 字符串为对象
+                    if (jsonObject == null)
+                        throw new JsonSerializationException("JSON反序列化异常");
+                    jsonResults.Add(jsonObject);
+                }
+
+                // 将对象列表序列化为 JSON 数组
+                string finalJson = JsonConvert.SerializeObject(jsonResults, Formatting.Indented);
+                if (finalJson != "[]")  // 没查到相应信息
+                {
+                    // finalJson = Base64ForJson.Base64Encode(finalJson);  // add: 将准备发给前端的数据进行编码
+                    return Ok(finalJson);
+                }
+                else
+                    return StatusCode(500, "未查找到相应信息");
+            }
+            catch (Exception ex) { return StatusCode(500, $"属性不匹配而异常: {ex.Message}"); }  // TODO: 错误码设置
+        }
+
         [HttpGet("{json}")]
         public IActionResult Get(string json)
         {
