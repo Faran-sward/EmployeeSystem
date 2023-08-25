@@ -19,6 +19,8 @@
 #include <QResizeEvent>
 #include <QStandardItem>
 #include <QScrollBar>
+#include <QPropertyAnimation>
+#include <QMessageBox>
 
 namespace Ui {
 class Dept_Info;
@@ -43,9 +45,10 @@ private:
     int nHSliderValue = 0;
     void getScrollValue();
     void setScrollValue();
+    bool flag = true;
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
+    bool eventFilter(QObject * watched, QEvent * event);
 
 private slots:
     void slotCountMessage();       //定时触发的槽函数

@@ -17,6 +17,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QResizeEvent>
+#include <QScrollBar>
 
 namespace Ui {
 class Dept_Pos_Emp;
@@ -38,6 +39,10 @@ private:
     QUrl url = QUrl("");
     void GetDept(QNetworkReply *reply);
     QJsonArray* thearray=NULL;
+    int nVSliderValue_0 = 0;
+    void getScrollValue();
+    void setScrollValue();
+    bool notchange=false;
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;

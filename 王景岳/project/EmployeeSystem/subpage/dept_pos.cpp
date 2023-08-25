@@ -7,10 +7,11 @@ Dept_Pos::Dept_Pos(QWidget *parent) :
 {
     ui->setupUi(this);
     int width=ui->tabWidget->width()-2;
-    ui->auth_table->setColumnCount(3);
-    ui->auth_table->setColumnWidth(0, width * 0.33);
-    ui->auth_table->setColumnWidth(1, width * 0.33);
-    ui->auth_table->setColumnWidth(2, width * 0.34);
+    ui->auth_table->setColumnCount(4);
+    ui->auth_table->setColumnWidth(0, width * 0.25);
+    ui->auth_table->setColumnWidth(1, width * 0.25);
+    ui->auth_table->setColumnWidth(2, width * 0.25);
+    ui->auth_table->setColumnWidth(3, width * 0.25);
     ui->post_table->setColumnCount(5);
     ui->post_table->setColumnWidth(0, width * 0.20);
     ui->post_table->setColumnWidth(1, width * 0.20);
@@ -35,10 +36,14 @@ Dept_Pos::Dept_Pos(QWidget *parent) :
     url=QUrl(QString("http://121.41.120.170:5555/api/Dept/Get?building=")+QString("办公楼1"));
     request.setUrl(url);
     connect(&manager,&QNetworkAccessManager::finished,this,&Dept_Pos::GetDept);
+    connect(ui->application, SIGNAL(closeSignal()), this, SLOT(slotCountMessage()));
     manager.get(request);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotCountMessage()));
     timer->start(1000);
+    ui->auth_table->installEventFilter(this);
+    ui->post_table->installEventFilter(this);
+    ui->staff_table->installEventFilter(this);
 }
 
 void Dept_Pos::getScrollValue()
@@ -132,19 +137,56 @@ void Dept_Pos::on_comboBox_currentIndexChanged(int index)
     qDebug()<<"当前选中"<<ui->comboBox->itemText(index);
 }
 
-void Dept_Pos::resizeEvent(QResizeEvent *event)
+bool Dept_Pos::eventFilter(QObject * watched, QEvent * event)
 {
-    int width=ui->tabWidget->width()-2;
-    ui->auth_table->setColumnWidth(0, width * 0.33);
-    ui->auth_table->setColumnWidth(1, width * 0.33);
-    ui->auth_table->setColumnWidth(2, width * 0.34);
-    ui->post_table->setColumnWidth(0, width * 0.20);
-    ui->post_table->setColumnWidth(1, width * 0.20);
-    ui->post_table->setColumnWidth(2, width * 0.20);
-    ui->post_table->setColumnWidth(3, width * 0.20);
-    ui->post_table->setColumnWidth(4, width * 0.20);
-    ui->staff_table->setColumnWidth(0, width * 0.25);
-    ui->staff_table->setColumnWidth(1, width * 0.25);
-    ui->staff_table->setColumnWidth(2, width * 0.25);
-    ui->staff_table->setColumnWidth(3, width * 0.25);
+    if(watched==ui->auth_table){
+        if(event->type() == QEvent::Resize){
+            int width=ui->tabWidget->width()-2;
+            ui->auth_table->setColumnWidth(0, width * 0.25);
+            ui->auth_table->setColumnWidth(1, width * 0.25);
+            ui->auth_table->setColumnWidth(2, width * 0.25);
+            ui->auth_table->setColumnWidth(3, width * 0.25);
+        }
+    }
+    else if(watched==ui->post_table){
+        if(event->type() == QEvent::Resize){
+            int width=ui->tabWidget->width()-2;
+            ui->post_table->setColumnWidth(0, width * 0.20);
+            ui->post_table->setColumnWidth(1, width * 0.20);
+            ui->post_table->setColumnWidth(2, width * 0.20);
+            ui->post_table->setColumnWidth(3, width * 0.20);
+            ui->post_table->setColumnWidth(4, width * 0.20);
+        }
+    }
+    else if(watched==ui->staff_table){
+        if(event->type() == QEvent::Resize){
+            int width=ui->tabWidget->width()-2;
+            ui->staff_table->setColumnWidth(0, width * 0.25);
+            ui->staff_table->setColumnWidth(1, width * 0.25);
+            ui->staff_table->setColumnWidth(2, width * 0.25);
+            ui->staff_table->setColumnWidth(3, width * 0.25);
+        }
+    }
+}
+
+void Dept_Pos::on_addButton_clicked()
+{
+    if(!flag){
+        QPropertyAnimation* animation=new QPropertyAnimation(ui->application,"maximumWidth");
+        animation->setStartValue(400);
+        animation->setEndValue(0);
+        animation->setDuration(600);
+        animation->setEasingCurve(QEasingCurve::InOutQuad);
+        animation->start();
+        flag=!flag;
+    }
+    else{
+        QPropertyAnimation* animation=new QPropertyAnimation(ui->application,"maximumWidth");
+        animation->setStartValue(0);
+        animation->setEndValue(400);
+        animation->setDuration(600);
+        animation->setEasingCurve(QEasingCurve::InOutQuad);
+        animation->start();
+        flag=!flag;
+    }
 }

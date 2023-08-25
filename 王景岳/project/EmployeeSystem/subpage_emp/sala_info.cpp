@@ -14,6 +14,7 @@ Sala_Info::Sala_Info(QWidget *parent) :
     ui->tableWidget->setColumnWidth(3, width * 0.17);
     ui->tableWidget->setColumnWidth(4, width * 0.17);
     ui->tableWidget->setColumnWidth(5, width * 0.17);
+    ui->widget->setStyleSheet("#widget{background-color:rgb(255,255,255);}");
 }
 
 Sala_Info::~Sala_Info()

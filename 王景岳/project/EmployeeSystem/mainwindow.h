@@ -8,7 +8,6 @@
 #include <QTimer>
 #include "subpage/dept_info.h"
 #include "subpage/dept_pos.h"
-#include "subpage/pre_appr.h"
 #include "subpage/sala_mana.h"
 #include "subpage/myInfomation.h"
 #include "subpage/resume.h"
@@ -56,7 +55,7 @@ private:
     Ui::MainWindow *ui;
     QButtonGroup * topgroup = new QButtonGroup(this);
     int parentIndexnow=0,indexnow=0;
-    int parentlong[6]={3,1,2,3,2,3};
+    int parentlong[6]={2,1,2,3,2,3};
     bool parentexpand[6]={1,1,1,1,1,1};
     QString jobnum;
 
@@ -65,7 +64,6 @@ private:
 
     Dept_Info* dept_info;
     Dept_Pos* dept_pos;
-    Pre_Appr* pre_appr;
     Sala_Mana* sala_mana;
     MyInfomation* myinfomation;
     Resume* resume;

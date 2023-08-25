@@ -1,4 +1,5 @@
 #include "dept_info.h"
+#include "qeasingcurve.h"
 #include "ui_dept_info.h"
 #include "add_dept.h"
 
@@ -33,10 +34,12 @@ Dept_Info::Dept_Info(QWidget *parent) :
     url=QUrl(QString("http://121.41.120.170:5555/api/Dept/Get?building=")+QString("办公楼1"));
     request.setUrl(url);
     connect(&manager,&QNetworkAccessManager::finished,this,&Dept_Info::GetDept);
+    connect(ui->application, SIGNAL(closeSignal()), this, SLOT(slotCountMessage()));
     manager.get(request);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotCountMessage()));
     timer->start(1000);
+    ui->tableWidget->installEventFilter(this);
 }
 
 void Dept_Info::getScrollValue()
@@ -133,19 +136,38 @@ void Dept_Info::onCancelClicked()
     ui->tableWidget->removeRow(row);
 }
 
-void Dept_Info::resizeEvent(QResizeEvent *event)
-{
-    int width = ui->tableWidget->width()-20;
-    ui->tableWidget->setColumnWidth(0, width * 0.20);
-    ui->tableWidget->setColumnWidth(1, width * 0.20);
-    ui->tableWidget->setColumnWidth(2, width * 0.20);
-    ui->tableWidget->setColumnWidth(3, width * 0.20);
-    ui->tableWidget->setColumnWidth(4, width * 0.20);
-}
-
 void Dept_Info::on_addButton_clicked()
 {
-    Add_dept* a=new Add_dept();
-    a->show();
-    connect(a, SIGNAL(closeSignal()), this, SLOT(slotCountMessage()));
+    if(!flag){
+        QPropertyAnimation* animation=new QPropertyAnimation(ui->application,"maximumWidth");
+        animation->setStartValue(400);
+        animation->setEndValue(0);
+        animation->setDuration(600);
+        animation->setEasingCurve(QEasingCurve::InOutQuad);
+        animation->start();
+        flag=!flag;
+    }
+    else{
+        QPropertyAnimation* animation=new QPropertyAnimation(ui->application,"maximumWidth");
+        animation->setStartValue(0);
+        animation->setEndValue(400);
+        animation->setDuration(600);
+        animation->setEasingCurve(QEasingCurve::InOutQuad);
+        animation->start();
+        flag=!flag;
+    }
+}
+
+bool Dept_Info::eventFilter(QObject * watched, QEvent * event)
+{
+    if(watched==ui->tableWidget){
+        if(event->type() == QEvent::Resize){
+            int width = ui->tableWidget->width()-20;
+            ui->tableWidget->setColumnWidth(0, width * 0.20);
+            ui->tableWidget->setColumnWidth(1, width * 0.20);
+            ui->tableWidget->setColumnWidth(2, width * 0.20);
+            ui->tableWidget->setColumnWidth(3, width * 0.20);
+            ui->tableWidget->setColumnWidth(4, width * 0.20);
+        }
+    }
 }

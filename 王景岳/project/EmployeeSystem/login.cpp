@@ -140,7 +140,7 @@ void Login::on_loginButton_clicked()
 
     QObject::connect(naManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
-    request.setUrl(QUrl::fromUserInput("http://8.130.119.222:9091/api/Values/LoginAndSign"));
+    request.setUrl(QUrl::fromUserInput("http://8.130.119.222:1236/api/Values/LoginAndSign"));
 
     QJsonObject object;
     object.insert("account",ui->numEdit->text());

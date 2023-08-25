@@ -18,7 +18,7 @@ MainWindow_Emp::MainWindow_Emp(QString num,QWidget *parent)
     ui->labIco->setPixmap(QPixmap::fromImage(image));
 
     //设置左侧标签导航栏内容与样式
-    QString str="组织规划||0||,部门信息|组织规划|||,我的编制申请|组织规划|||,薪资管理||0||,我的薪资|薪资管理|||,员工信息||0||,我的信息|员工信息|||,我的简历|员工信息|||,职务管理||0||,我的职务|职务管理|||,我的申请|职务管理|||,合同管理||0||,我的合同|合同管理|||,合同申请|合同管理|||,考勤管理||0||,我的考勤|考勤管理|||,加班申请|考勤管理|||,休假申请|考勤管理|||";
+    QString str="组织规划||0||,部门信息|组织规划|||,薪资管理||0||,我的薪资|薪资管理|||,员工信息||0||,我的信息|员工信息|||,我的简历|员工信息|||,职务管理||0||,我的职务|职务管理|||,我的申请|职务管理|||,合同管理||0||,我的合同|合同管理|||,合同申请|合同管理|||,考勤管理||0||,我的考勤|考勤管理|||,加班申请|考勤管理|||,休假申请|考勤管理|||";
 
     ui->navListView->setItems(str);
     ui->navListView->setChildBgNormalColor(QColor(100,149,255));//
@@ -59,8 +59,6 @@ MainWindow_Emp::MainWindow_Emp(QString num,QWidget *parent)
     //将所有子页面加入stackedWidget
     dept_pos_emp=new Dept_Pos_Emp();
     ui->stackedWidget->addWidget(dept_pos_emp);
-    my_pre=new My_Pre();
-    ui->stackedWidget->addWidget(my_pre);
     sala_info=new Sala_Info();
     ui->stackedWidget->addWidget(sala_info);
     myinfomation_emp = new MyInfomation_Emp();
@@ -180,7 +178,7 @@ void MainWindow_Emp::GetTopPress(int index)
     ui->navListView->setCurrentRow(-1);
     indexnow=0;
     parentIndexnow=-1;
-    int page=12+index;
+    int page=11+index;
     ui->stackedWidget->setCurrentIndex(page);
 }
 

@@ -18,6 +18,7 @@
 #include <QMessageBox>
 #include <QResizeEvent>
 #include <QScrollBar>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class Dept_Pos;
@@ -43,13 +44,15 @@ private:
     void getScrollValue();
     void setScrollValue();
     bool notchange=false;
+    bool flag = true;
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
+    bool eventFilter(QObject * watched, QEvent * event);
 
 private slots:
     void slotCountMessage();       //定时触发的槽函数
     void on_comboBox_currentIndexChanged(int index);
+    void on_addButton_clicked();
 };
 
 #endif // DEPT_POS_H

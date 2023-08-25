@@ -1,5 +1,5 @@
-#ifndef ADD_DEPT_H
-#define ADD_DEPT_H
+#ifndef ADD_POST_H
+#define ADD_POST_H
 
 #include <QWidget>
 #include <QDesktopWidget>
@@ -17,19 +17,19 @@
 #include <QCloseEvent>
 
 namespace Ui {
-class Add_dept;
+class Add_post;
 }
 
-class Add_dept : public QWidget
+class Add_post : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Add_dept(QWidget *parent = nullptr);
-    ~Add_dept();
+    explicit Add_post(QWidget *parent = nullptr);
+    ~Add_post();
 
 private:
-    Ui::Add_dept *ui;
+    Ui::Add_post *ui;
 
 private slots:
     void on_addButton_clicked();
@@ -39,4 +39,4 @@ signals:
     void closeSignal(); //新建部门后发送的信号，以便进行刷新
 };
 
-#endif // ADD_DEPT_H
+#endif // ADD_POST_H

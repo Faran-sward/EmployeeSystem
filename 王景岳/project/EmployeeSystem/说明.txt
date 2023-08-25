@@ -1,4 +1,0 @@
-两套主界面中，boss登录后进入主界面MainWindow，员工登录后进入主界面MainWindow_Emp；
-boss子页面文件在文件夹subpage中，员工子页面文件在文件夹subpage_emp中；
-两套主界面的目录和页面切换均已完成，只需要将完成的子页面按序(即按目录序)插到入stackedWidget中；
-登录的api在转移到新服务器上后暂时无法使用，测试时可以在main.cpp中修改打开的页面。

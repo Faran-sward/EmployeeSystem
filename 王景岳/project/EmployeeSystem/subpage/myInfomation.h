@@ -87,6 +87,8 @@ public:
     void bscEnsure();
     void bscCancel();
 
+    void paintEvent(QPaintEvent* event) ;
+
 private:
     Ui::MyInfomation *ui;
     QNetworkAccessManager* networkManager;

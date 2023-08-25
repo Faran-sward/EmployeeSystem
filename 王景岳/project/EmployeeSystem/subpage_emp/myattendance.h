@@ -10,6 +10,9 @@
 #include <QStandardItemModel>
 #include <QPushButton>
 #include <QTableWidget>
+#include <QPropertyAnimation>
+#include <QMessageBox>
+#include <QDateTime>
 
 namespace Ui {
 class MyAttendance;
@@ -25,9 +28,13 @@ public:
 
     void show_table();
 
+public slots:
+    void on_pushButton_clicked();
+    void on_signin_clicked();
+
 private:
-    QStandardItemModel* att_model;
     QStandardItemModel* sch_model;
+    bool flag = true;
 
     Ui::MyAttendance *ui;
 };
