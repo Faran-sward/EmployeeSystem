@@ -30,6 +30,12 @@ public:
     explicit SolveApply(QWidget *parent = nullptr);
     ~SolveApply();
 
+    void onApproveClicked(int row);
+    void onDisApproveClicked(int row);
+    void initialize();
+    void updateDayOptions();
+    void sendGetRequest(QString url);
+
 private:
     Ui::SolveApply *ui;
 };

@@ -20,6 +20,8 @@ SOURCES += \
     subpage/allcontract_info.cpp \
     subpage/attendance_apply.cpp \
     subpage/attendance_info.cpp \
+    subpage/change_auth.cpp \
+    subpage/change_sala.cpp \
     subpage/contractapply.cpp \
     subpage/deployment.cpp \
     subpage/dept_info.cpp \
@@ -53,6 +55,8 @@ HEADERS += \
     subpage/allcontract_info.h \
     subpage/attendance_apply.h \
     subpage/attendance_info.h \
+    subpage/change_auth.h \
+    subpage/change_sala.h \
     subpage/contractapply.h \
     subpage/deployment.h \
     subpage/dept_info.h \
@@ -86,6 +90,8 @@ FORMS += \
     subpage/allcontract_info.ui \
     subpage/attendance_apply.ui \
     subpage/attendance_info.ui \
+    subpage/change_auth.ui \
+    subpage/change_sala.ui \
     subpage/contractapply.ui \
     subpage/deployment.ui \
     subpage/dept_info.ui \

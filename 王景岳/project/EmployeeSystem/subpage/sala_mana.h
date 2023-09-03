@@ -17,6 +17,11 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QResizeEvent>
+#include <QStandardItem>
+#include <QScrollBar>
+#include <QPropertyAnimation>
+#include <QMessageBox>
+#include <QErrorMessage>
 
 namespace Ui {
 class Sala_Mana;
@@ -31,10 +36,27 @@ public:
     ~Sala_Mana();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
+    bool eventFilter(QObject * watched, QEvent * event);
 
 private:
     Ui::Sala_Mana *ui;
+    QNetworkAccessManager manager;
+    QStandardItemModel *model;
+    QNetworkRequest request;
+    QUrl url = QUrl("");
+    void GetSala(QNetworkReply *reply);
+    int nVSliderValue = 0;
+    int nHSliderValue = 0;
+    void getScrollValue();
+    void setScrollValue();
+    bool flag = true;
+    int yearnow;
+    int monthnow;
+
+private slots:
+    void slotCountMessage();       //定时触发的槽函数
+    void onChangeClicked();        //变更按钮被点击触发的槽函数
+    void hideRight();
 };
 
 #endif // SALA_MANA_H

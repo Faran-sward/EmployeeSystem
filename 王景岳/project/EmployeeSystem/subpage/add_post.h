@@ -15,6 +15,7 @@
 #include <QJsonObject>
 #include <QDebug>
 #include <QCloseEvent>
+#include <QErrorMessage>
 
 namespace Ui {
 class Add_post;
@@ -34,9 +35,11 @@ private:
 private slots:
     void on_addButton_clicked();
     void requestFinished(QNetworkReply *reply);      //用来接收网络访问结果的槽函数
+    void getName(QString name);
 
 signals:
     void closeSignal(); //新建部门后发送的信号，以便进行刷新
+    void needSignal();
 };
 
 #endif // ADD_POST_H

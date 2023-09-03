@@ -35,6 +35,7 @@ public:
 private:
     Ui::Dept_Pos *ui;
     QString deptname="";
+    QString deptid="";
     QNetworkAccessManager manager;
     QNetworkRequest request;
     QUrl url = QUrl("");
@@ -45,6 +46,8 @@ private:
     void setScrollValue();
     bool notchange=false;
     bool flag = true;
+    bool flag1 = true;
+    void tableRefresh();
 
 protected:
     bool eventFilter(QObject * watched, QEvent * event);
@@ -53,6 +56,13 @@ private slots:
     void slotCountMessage();       //定时触发的槽函数
     void on_comboBox_currentIndexChanged(int index);
     void on_addButton_clicked();
+    void getNeed();
+    void onCancelClicked();        //取消按钮被点击触发的槽函数
+    void onChangeClicked();        //变更按钮被点击触发的槽函数
+    void hideRight();
+
+signals:
+    void giveName(QString name);
 };
 
 #endif // DEPT_POS_H

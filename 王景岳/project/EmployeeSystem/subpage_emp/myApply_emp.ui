@@ -13,56 +13,201 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>50</number>
-   </property>
-   <property name="topMargin">
-    <number>50</number>
-   </property>
-   <property name="rightMargin">
-    <number>50</number>
-   </property>
-   <property name="bottomMargin">
-    <number>50</number>
-   </property>
-   <item row="0" column="0">
-    <widget class="QTableWidget" name="tableWidget">
-     <row>
-      <property name="text">
-       <string/>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="styleSheet">
+      <string notr="true">#widget_2 {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>我的申请记录</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>585</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="styleSheet">
+      <string notr="true">#widget {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="rightMargin">
+       <number>20</number>
       </property>
-     </row>
-     <column>
-      <property name="text">
-       <string>申请号</string>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>172</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QComboBox" name="maplyYear"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>年</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="maplyMonth"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>月</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="maplyDay"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>日</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>171</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="maplyGet">
+        <property name="styleSheet">
+         <string notr="true">#maplyGet{
+    font: 25 10pt '微软雅黑 Light';
+    color: rgb(255,255,255);
+	padding-left:20px;
+	padding-right:20px;
+    background-color: #2F80ED;
+    border: 2px solid #2F80ED;
+    border-radius: 10px;
+}
+
+#maplyGet:hover {
+ 	border: 2px solid #1652AB;
+    background-color: #1652AB;
+}
+
+#maplyGet:pressed {
+	 border: 2px solid #FFFFFF;
+    background-color: #1652AB;
+}</string>
+        </property>
+        <property name="text">
+         <string>筛选</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="outside" native="true">
+     <property name="styleSheet">
+      <string notr="true">#outside {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="leftMargin">
+       <number>5</number>
       </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>申请人</string>
+      <property name="topMargin">
+       <number>30</number>
       </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>员工号</string>
+      <property name="rightMargin">
+       <number>5</number>
       </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>申请内容</string>
+      <property name="bottomMargin">
+       <number>30</number>
       </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>申请进度</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>受理人</string>
-      </property>
-     </column>
+      <item row="0" column="0">
+       <widget class="QWidget" name="inside" native="true">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QTabWidget" name="tabWidget">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="tab">
+            <attribute name="title">
+             <string>处理中</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="0" column="0">
+              <widget class="QTableWidget" name="maplySolving"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tab_2">
+            <attribute name="title">
+             <string>已处理</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QTableWidget" name="maplySolved"/>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

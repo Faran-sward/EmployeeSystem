@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
         file.close();
     }
     //Login w;
-    MainWindow w(QString("22222222"));
-    //MainWindow_Emp w(QString("11111111"));
+    MainWindow w(QString("E0001"));
+    //MainWindow_Emp w(QString("E0001"));
     w.show();
     return a.exec();
 }

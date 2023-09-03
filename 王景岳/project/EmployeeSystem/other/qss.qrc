@@ -30,5 +30,8 @@
         <file>images/icons8-plus-50.png</file>
         <file>images/smallwhite.png</file>
         <file>images/head_icon.png</file>
+        <file>images/deployment1.png</file>
+        <file>images/down.png</file>
+        <file>images/on.png</file>
     </qresource>
 </RCC>

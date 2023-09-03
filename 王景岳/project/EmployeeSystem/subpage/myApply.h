@@ -27,11 +27,18 @@ class MyApply : public QWidget
     Q_OBJECT
 
 public:
-    explicit MyApply(QWidget *parent = nullptr);
+    explicit MyApply(QString employrrID,QWidget *parent = nullptr);
     ~MyApply();
+
+    void initialize();
+    void updateDayOptions();
+    void sendGetRequest(QString url);
+    void onApproveClicked(int row);
+    void onDisApproveClicked(int row);
 
 private:
     Ui::MyApply *ui;
+    QString employeeID;
 };
 
 

@@ -32,8 +32,10 @@ public:
     QString Birth;
     QString PhoneNumber;
     QString HomeAddress;
+    QString ImageURL;
     QString WorkState;
-    QString Salary;
+
+
 
     // 构造函数,将QJsonObject转换为Employee对象
     Employee(){
@@ -44,6 +46,7 @@ public:
         Birth = "";
         PhoneNumber = "";
         HomeAddress ="";
+        ImageURL="";
         WorkState = "";
     }
     Employee(const QJsonObject& obj)
@@ -55,6 +58,7 @@ public:
         Birth = obj["Birth"].toString();
         PhoneNumber = obj["PhoneNumber"].toString();
         HomeAddress = obj["HomeAddress"].toString();
+        ImageURL = obj["ImageURL"].toString();
         WorkState = obj["WorkState"].toString();
     }
 
@@ -68,10 +72,32 @@ public:
         json["Birth"] = Birth;
         json["PhoneNumber"] = PhoneNumber;
         json["HomeAddress"]=HomeAddress;
+        json["ImageURL"]=ImageURL;
         json["WorkState"]=WorkState;
         return json;
     }
 
+};
+
+class ResumeInfo {
+public:
+    QString idNumber;
+    QString educationNo;
+    QString educationType;
+    QString institutionName;
+    QString jobTitle;
+    QString startTime;
+    QString endTime;
+    QString degree;
+};
+
+class SalaryInfo{
+public:
+    QString EmployeeID;
+    QString PayDate;
+    QString Bonus;
+    QString Commission;
+    QString OverallSalary;
 };
 
 class MyInfomation : public QWidget
@@ -79,20 +105,26 @@ class MyInfomation : public QWidget
     Q_OBJECT
 
 public:
-    explicit MyInfomation(QWidget *parent = nullptr);
+    explicit MyInfomation(QString employeeID,QWidget *parent = nullptr);
     ~MyInfomation();
 
-    void basicInfomation(const QString& employeeID);
+    void basicInfomation();
+    void dealBasicInfo(QJsonObject jsonObj);
+    void dealEduInfo(QJsonObject jsonObj);
+    void dealSalaryInfo(QJsonObject jsonObj);
+
     void bscChangeInfo();
     void bscEnsure();
     void bscCancel();
 
-    void paintEvent(QPaintEvent* event) ;
+    void picPresent();
+    void applyAnimation();
+    void exitAnimation();
 
 private:
     Ui::MyInfomation *ui;
-    QNetworkAccessManager* networkManager;
     Employee employee;
+    Employee temp;
 };
 
 #endif // MYINFOMATION_H

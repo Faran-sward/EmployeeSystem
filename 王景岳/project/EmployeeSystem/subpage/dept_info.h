@@ -21,6 +21,7 @@
 #include <QScrollBar>
 #include <QPropertyAnimation>
 #include <QMessageBox>
+#include <QErrorMessage>
 
 namespace Ui {
 class Dept_Info;

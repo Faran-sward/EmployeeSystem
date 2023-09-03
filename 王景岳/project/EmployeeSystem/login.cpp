@@ -54,7 +54,7 @@ Login::Login(QWidget *parent) :
     QRegExp regExp1("[A-Za-z0-9]{1,20}");
     ui->passEdit->setValidator(new QRegExpValidator(regExp1, this));
     QRegExp regExp2("[0-9]{1,8}");
-    ui->numEdit->setValidator(new QRegExpValidator(regExp2, this));
+    ui->numEdit->setValidator(new QRegExpValidator(regExp1, this));
     ui->passEdit->setEchoMode(QLineEdit::Password); //隐藏密码
 }
 

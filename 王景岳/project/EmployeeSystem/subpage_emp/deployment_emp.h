@@ -19,6 +19,7 @@
 #include <QResizeEvent>
 
 #include <QStandardItemModel>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class Deployment_Emp;
@@ -29,13 +30,29 @@ class Deployment_Emp : public QWidget
     Q_OBJECT
 
 public:
-    explicit Deployment_Emp(QWidget *parent = nullptr);
+    explicit Deployment_Emp(QString employeeID,QWidget *parent = nullptr);
     ~Deployment_Emp();
 
-    void deploymentRecord(const QString& employeeID);
+    void jobRecord();
+    void deploymentRecord();
+
+    void changeComboBoxInitiate();
+    void applyAnimation();
+    void submitApply();
+    void applyAddInfomation();
+
+    void applyButtonAnimation();
+
+    void getApplyID();
+    void getName();
+
 
 private:
     Ui::Deployment_Emp *ui;
-    QNetworkAccessManager* networkManager;
+    bool flagApplyPresentButton = true;
+    QString applyID;
+    QString employeeID;
+    QString name;
+    QString applyTime;
 };
 #endif // DEPLOYMENT_EMP_H

@@ -41,7 +41,15 @@ void Add_dept::on_addButton_clicked()
     /*
      * 类似创建账号，发送网络请求
      */
-    emit closeSignal();
+    ui->errorText->setStyleSheet("border: none;color:rgb(86, 144, 130);");
+    ui->errorText->setText("正在创建中，请稍等");
+    QNetworkRequest request;
+    QNetworkAccessManager* naManager = new QNetworkAccessManager(this);
+
+    QObject::connect(naManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
+    QString strUrl="http://8.130.119.222:1751/api/Values/newBuildDept?DepartmentID="+ui->numEdit->text()+"&DepartmentTitle="+ui->nameEdit->text()+"&Building="+ui->buildEdit->text()+"&layer="+ui->floorEdit->text();
+    request.setUrl(QUrl(strUrl));
+    naManager->get(request);
 }
 
 void Add_dept::requestFinished(QNetworkReply *reply)
@@ -49,4 +57,35 @@ void Add_dept::requestFinished(QNetworkReply *reply)
     /*
      * 类似创建账号，接收网络请求结果
      */
+    QString ResultJson;
+    QByteArray bytes = reply->readAll();
+    QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    if(statusCode.isValid())
+    {
+        qDebug() << "status code=" << statusCode.toInt();
+    }
+    QNetworkReply::NetworkError err = reply->error();
+    if(err != QNetworkReply::NoError)
+    {
+        qDebug() << "Failed: " << reply->errorString();
+        ui->errorText->setStyleSheet("border: none;color:rgb(255, 0, 0);");
+        ui->errorText->setText("创建失败，请检查网络！");
+        return;
+    }
+    else
+    {
+        qDebug() << "ResultJson  is  " <<  QString::fromStdString(bytes.toStdString());
+        ResultJson =  QString::fromStdString(bytes.toStdString());
+        if(bytes.toStdString()=="{\"backCode\":1}"){
+            qDebug() << ui->nameEdit->text()<<"已创建成功";
+            ui->errorText->setStyleSheet("border: none;color:rgb(86, 144, 130);");
+            ui->errorText->setText("部门" + ui->numEdit->text()+"已创建成功");
+            emit closeSignal();
+        }
+        else{
+            ui->errorText->setStyleSheet("border: none;color:rgb(255, 0, 0);");
+            ui->errorText->setText("该部门已创建，部门创建失败！");
+            return;
+        }
+    }
 }

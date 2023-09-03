@@ -17,6 +17,9 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QResizeEvent>
+#include <QStandardItem>
+#include <QScrollBar>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class Sala_Info;
@@ -27,7 +30,7 @@ class Sala_Info : public QWidget
     Q_OBJECT
 
 public:
-    explicit Sala_Info(QWidget *parent = nullptr);
+    explicit Sala_Info(QString num,QWidget *parent = nullptr);
     ~Sala_Info();
 
 protected:
@@ -35,6 +38,19 @@ protected:
 
 private:
     Ui::Sala_Info *ui;
+    QString mynum;
+    QNetworkAccessManager manager;
+    QStandardItemModel *model;
+    QNetworkRequest request;
+    QUrl url = QUrl("");
+    void GetSala(QNetworkReply *reply);
+    int nVSliderValue = 0;
+    int nHSliderValue = 0;
+    void getScrollValue();
+    void setScrollValue();
+
+private slots:
+    void slotCountMessage();       //定时触发的槽函数
 };
 
 #endif // SALA_INFO_H

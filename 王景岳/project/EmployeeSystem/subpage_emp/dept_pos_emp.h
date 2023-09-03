@@ -43,6 +43,7 @@ private:
     void getScrollValue();
     void setScrollValue();
     bool notchange=false;
+    void tableRefresh();
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;

@@ -18,6 +18,9 @@
 #include <QMessageBox>
 #include <QResizeEvent>
 
+#include<QPropertyAnimation>
+#include <QTableWidget>
+
 namespace Ui {
 class Resume;
 }
@@ -30,8 +33,27 @@ public:
     explicit Resume(QWidget *parent = nullptr);
     ~Resume();
 
+    void fillComboBox();
+    void presentDepartInfo();
+    void presentEmployeeInfo();
+    void onEmployeeCellClicked(int row, int column);
+
+
+    void Leftmenu_Animation();
+    void pdfToPic();
+    void getResumePic();
+    void maxResume();
+    void returnToUi();
+    void download();
+
+
 private:
     Ui::Resume *ui;
+    QString searchingID;
+
+
+private slots:
+    void treatCheckedCombo();
 };
 
 

@@ -59,15 +59,15 @@ MainWindow_Emp::MainWindow_Emp(QString num,QWidget *parent)
     //将所有子页面加入stackedWidget
     dept_pos_emp=new Dept_Pos_Emp();
     ui->stackedWidget->addWidget(dept_pos_emp);
-    sala_info=new Sala_Info();
+    sala_info=new Sala_Info(num);
     ui->stackedWidget->addWidget(sala_info);
-    myinfomation_emp = new MyInfomation_Emp();
+    myinfomation_emp = new MyInfomation_Emp(jobnum);
     ui->stackedWidget->addWidget(myinfomation_emp);
-    resume_emp = new Resume_Emp();
+    resume_emp = new Resume_Emp(jobnum);
     ui->stackedWidget->addWidget(resume_emp);
-    deployment_emp = new Deployment_Emp();
+    deployment_emp = new Deployment_Emp(jobnum);
     ui->stackedWidget->addWidget(deployment_emp);
-    myApply_emp = new MyApply_Emp();
+    myApply_emp = new MyApply_Emp(jobnum);
     ui->stackedWidget->addWidget(myApply_emp);
     mycontract_info=new Mycontract_Info();
     ui->stackedWidget->addWidget(mycontract_info);

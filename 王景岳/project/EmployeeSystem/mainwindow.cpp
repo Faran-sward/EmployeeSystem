@@ -62,13 +62,13 @@ MainWindow::MainWindow(QString num,QWidget *parent)
     sala_mana=new Sala_Mana();
     ui->stackedWidget->addWidget(sala_mana);
 
-    myinfomation = new MyInfomation();
+    myinfomation = new MyInfomation("E0001");
     ui->stackedWidget->addWidget(myinfomation);
     resume = new Resume();
     ui->stackedWidget->addWidget(resume);
-    deployment = new Deployment();
+    deployment = new Deployment("E0001");
     ui->stackedWidget->addWidget(deployment);
-    myapply = new MyApply();
+    myapply = new MyApply("E0001");
     ui->stackedWidget->addWidget(myapply);
     solveapply=new SolveApply();
     ui->stackedWidget->addWidget(solveapply);

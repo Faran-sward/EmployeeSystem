@@ -31,7 +31,7 @@ Dept_Info::Dept_Info(QWidget *parent) :
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->widget->setStyleSheet("#widget{background-color:rgb(255,255,255);}");
 
-    url=QUrl(QString("http://121.41.120.170:5555/api/Dept/Get?building=")+QString("办公楼1"));
+    url=QUrl("http://8.130.119.222:1751/api/Values/GetAllDeptInfo");
     request.setUrl(url);
     connect(&manager,&QNetworkAccessManager::finished,this,&Dept_Info::GetDept);
     connect(ui->application, SIGNAL(closeSignal()), this, SLOT(slotCountMessage()));
@@ -74,9 +74,10 @@ void Dept_Info::GetDept(QNetworkReply *reply)
     if (!doc.isNull() &&error.error == QJsonParseError::NoError)
     {
         //qDebug() << "文件解析成功\n";
-        if (doc.isArray())
+        QJsonValue arrValue = doc.object().value("infos");
+        if (arrValue.isArray())
         {
-            QJsonArray array = doc.array();  // 转数组
+            QJsonArray array = arrValue.toArray();  // 转数组
             int nSize = array.size();
             for(int row = ui->tableWidget->rowCount() - 1;row >= 0; row--)
             {
@@ -88,10 +89,10 @@ void Dept_Info::GetDept(QNetworkReply *reply)
                 ui->tableWidget->insertRow(ui->tableWidget->rowCount());
                 int rowIdx = ui->tableWidget->rowCount()-1;
                 //必须先设置item,然后再获取,因为默认是空的
-                QTableWidgetItem *item0 = new QTableWidgetItem(array.at(i).toObject().value("id").toString());
-                QTableWidgetItem *item1 = new QTableWidgetItem(array.at(i).toObject().value("name").toString());
-                QTableWidgetItem *item2 = new QTableWidgetItem(array.at(i).toObject().value("buliding").toString());
-                QTableWidgetItem *item3 = new QTableWidgetItem(array.at(i).toObject().value("layer").toString());
+                QTableWidgetItem *item0 = new QTableWidgetItem(array.at(i).toObject().value("departmentID").toString());
+                QTableWidgetItem *item1 = new QTableWidgetItem(array.at(i).toObject().value("departmentTitle").toString());
+                QTableWidgetItem *item2 = new QTableWidgetItem(array.at(i).toObject().value("building").toString());
+                QTableWidgetItem *item3 = new QTableWidgetItem(array.at(i).toObject().value("layer").toVariant().toString());
                 ui->tableWidget->setItem(rowIdx,0,item0);
                 ui->tableWidget->setItem(rowIdx,1,item1);
                 ui->tableWidget->setItem(rowIdx,2,item2);
@@ -129,11 +130,58 @@ void Dept_Info::onCancelClicked()
     if (reply == QMessageBox::No) {
         return;
     }
-    qDebug() << "将"<<ui->tableWidget->model()->index(row,1).data().toString()<<"部门取消";
     /*
      * 通过服务端对数据库进行修改
      */
-    ui->tableWidget->removeRow(row);
+    QNetworkRequest oNetRequest;
+    QString strUrl="http://8.130.119.222:1751/api/Values/delDeptInfo?DepartmentID="+ui->tableWidget->model()->index(row,0).data().toString();
+    oNetRequest.setUrl(QUrl(strUrl));
+
+    QNetworkAccessManager oNetAccessManager;
+    QNetworkReply* oNetReply = nullptr;
+    QByteArray inputTmp;
+    oNetReply = oNetAccessManager.get(oNetRequest);
+    // 添加超时处理，10s超时
+    QEventLoop eventloop;
+    connect(oNetReply, SIGNAL(finished()), &eventloop, SLOT(quit()));
+    QTimer::singleShot(10000, &eventloop, &QEventLoop::quit);
+    eventloop.exec();
+    QByteArray array;
+    QString strResult;
+    if(oNetReply->isFinished())
+    {
+        if(oNetReply->error() == QNetworkReply::NoError)//正常结束，读取响应数据
+        {
+            strResult = oNetReply->readAll();
+            if(strResult=="{\"backCode\":1}"){
+                qDebug() << "将"<<ui->tableWidget->model()->index(row,1).data().toString()<<"部门取消";
+                ui->tableWidget->removeRow(row);
+            }
+            else{
+                QErrorMessage *dialog = new QErrorMessage(this);
+                dialog->setWindowTitle("错误信息提示框");
+                dialog->showMessage("该部门已被删除！");
+            }
+        }
+        else //异常结束，比如不存在的http服务器
+        {
+            QErrorMessage *dialog = new QErrorMessage(this);
+            dialog->setWindowTitle("错误信息提示框");
+            dialog->showMessage("网络错误，删除失败！");
+        }
+    }
+    else //超时，网络原因导致删除失败
+    {
+        disconnect(oNetReply, &QNetworkReply::finished, &eventloop, &QEventLoop::quit);
+        oNetReply->abort();
+        qDebug()<<"timeout";
+        QErrorMessage *dialog = new QErrorMessage(this);
+        dialog->setWindowTitle("错误信息提示框");
+        dialog->showMessage("网络错误，删除失败！");
+    }
+
+    oNetReply->deleteLater();
+
 }
 
 void Dept_Info::on_addButton_clicked()
